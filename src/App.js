@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import ReactDOM from 'react-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Sidebar from './components/Sidebar/Sidebar';
+import Dashboard from './components/Dashboard/Dashboard';
+import Stock from './components/Stock/Stock';
+import Sales from './components/Sales/Sales';
+import Reports from './components/Reports/Reports';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <Router>
+          <div className='container-fluid m-0 p-0'>
+              <div className='row m-0 p-0'>
+                <Sidebar />
+                <div className='col col-md-9'>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/stock" element={<Stock />} />
+                    <Route path="/sales" element={<Sales />} />
+                    <Route path="/reports" element={<Reports />} />
+                  </Routes>
+                </div>
+              </div>
+          </div>
+        </Router>
   );
 }
 

@@ -1,0 +1,23 @@
+.sidebar {
+    height: 100vh;
+}
+
+.sidebar > .nav-pills .nav-link {
+    border: 1px solid #000;
+    color: #000;
+    font-size: 18px;
+}
+
+.sidebar > .nav-pills .nav-link:hover, .sidebar > .nav-pills .show>.nav-link:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.sidebar > .nav-pills .nav-link.active, .sidebar > .nav-pills .show>.nav-link {
+    background-color: #000;
+    color: #fff;
+}
+
+.siderbar .cur-pointer {
+    cursor: pointer;
+}

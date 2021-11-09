@@ -1,0 +1,15 @@
+.stock th 
+{
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.stock td 
+{
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.stock a {
+    color: #000!important;
+}
