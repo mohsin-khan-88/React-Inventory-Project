@@ -1,0 +1,15 @@
+.tables th 
+{
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.tables td 
+{
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.tables a {
+    color: #000!important;
+}

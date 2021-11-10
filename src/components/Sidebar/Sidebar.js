@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDolly, faTachometerAlt, faCubes, faChartBar, faChartPie } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faTachometerAlt, faCubes, faChartBar, faChartPie, faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
 
 function Sidebar() {
     return (
@@ -21,6 +21,9 @@ function Sidebar() {
                         </li>
                         <li class="nav-item">
                         <NavLink activeClassName='active' className='nav-link text-uppercase mt-1 mb-1' to="/sales"><FontAwesomeIcon icon={faChartBar} /> Sales</NavLink>
+                        </li>
+                        <li class="nav-item">
+                        <NavLink activeClassName='active' className='nav-link text-uppercase mt-1 mb-1' to="/expense"><FontAwesomeIcon icon={faHandHoldingUsd} /> Expense</NavLink>
                         </li>
                         <li class="nav-item">
                         <NavLink activeClassName='active' className='nav-link text-uppercase mt-1 mb-1' to="/reports"><FontAwesomeIcon icon={faChartPie} /> Reports</NavLink>

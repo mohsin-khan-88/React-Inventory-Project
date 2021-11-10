@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Stock from './components/Stock/Stock';
 import Sales from './components/Sales/Sales';
 import Reports from './components/Reports/Reports';
+import Expense from './components/Expense/Expense';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/stock" element={<Stock />} />
                     <Route path="/sales" element={<Sales />} />
                     <Route path="/reports" element={<Reports />} />
+                    <Route path="/expense" element={<Expense />} />
                   </Routes>
                 </div>
               </div>
