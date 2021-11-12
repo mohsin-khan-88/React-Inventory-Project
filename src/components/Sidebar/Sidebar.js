@@ -2,16 +2,16 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDolly, faTachometerAlt, faCubes, faChartBar, faChartPie, faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
+import { faBoxOpen, faTachometerAlt, faCubes, faChartBar, faChartPie, faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons';
 
 function Sidebar() {
     return (
         <>
                 <div className='col col-md-3 border-end sidebar'>
-                <div>
-                    <h3 className='text-uppercase text-center mt-3 mb-3'> <FontAwesomeIcon icon={faDolly} /> Inventory</h3>
+                <div className='logoCon'>
+                    <FontAwesomeIcon className='logoIcon' icon={faBoxOpen} /> 
+                    <h3 className='text-uppercase text-center logo'>Inventory</h3>
                 </div>
-                    {/* <Router> */}
                     <ul class="nav flex-column nav-pills">
                         <li class="nav-item">
                         <NavLink exact={true} activeClassName='active' className='nav-link text-uppercase mt-1 mb-1' to="/"><FontAwesomeIcon icon={faTachometerAlt} /> Dashboard</NavLink>
@@ -29,7 +29,6 @@ function Sidebar() {
                         <NavLink activeClassName='active' className='nav-link text-uppercase mt-1 mb-1' to="/reports"><FontAwesomeIcon icon={faChartPie} /> Reports</NavLink>
                         </li>
                     </ul>
-                    {/* </Router> */}
                 </div>
         </>
     );

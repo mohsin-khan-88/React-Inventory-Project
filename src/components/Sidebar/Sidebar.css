@@ -1,5 +1,7 @@
+
 .sidebar {
     min-height: 100vh;
+    box-shadow: 1px 0px #eee;
 }
 
 .sidebar > .nav-pills .nav-link {
@@ -20,4 +22,27 @@
 
 .siderbar .cur-pointer {
     cursor: pointer;
+}
+
+.sidebar .logoCon {
+    margin: 0.5rem auto;
+}
+
+.sidebar .logo {
+        margin: 0.5rem auto;
+        font-size: 22px;
+        font-family: sans-serif;
+        border: 1px solid #000;
+        border-left: none;
+        border-right: none;
+        padding: 0.25rem;
+        letter-spacing: 8px;
+        max-width: 200px;
+        font-family: 'Titillium Web', sans-serif;
+}
+
+.sidebar .logoIcon {
+    margin: auto;
+    display: block;
+    font-size: 30px;
 }
