@@ -12,7 +12,7 @@ function Tables(props) {
     return (
         <>
         
-        <div className="container tables">
+        <div className="container-fluid tables">
             <div className="row">
                 <div className="col">
                     <div className="table-responsive">

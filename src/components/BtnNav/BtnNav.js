@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 
 class BtnNav extends Component {
+    
+    changeHandler = () => {   
+        this.props.onBtnClick(true)
 
-    changeHandler = () => {
-            this.props.onBtnClick(true)
     }
     
     render() {
         return (
-        <div className='btnNav'>
-            <div className="container">
+            <div className="container-fluid btnNav">
                 <div className="row">
                     <div className="col">
-                        <button onClick={this.changeHandler} className="btn btn-outline-dark">{this.props.btnName}</button>
+                        {this.props.showBtn ? <button onClick={this.changeHandler} className="btn btn-outline-dark">{this.props.btnName}</button> : null }
                     </div>
                     <div className="col">
                     <form className="form-inline d-flex" to={this.props.searchUrl}>
@@ -22,7 +22,6 @@ class BtnNav extends Component {
                     </div>
                 </div>
             </div>
-        </div>
         )
     }
 }
