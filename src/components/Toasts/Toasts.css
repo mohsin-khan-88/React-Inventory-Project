@@ -1,0 +1,7 @@
+.toast-container {
+  pointer-events: initial;
+}
+.toast-container .btn-close {
+  z-index: 999999999 !important;
+  opacity: 1;
+}

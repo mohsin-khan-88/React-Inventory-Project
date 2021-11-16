@@ -7,6 +7,7 @@ import BtnNav from "../BtnNav/BtnNav";
 import Tables from "../Tables/Tables";
 import AddStock from "./AddStock";
 import { Container, Row, Col } from "react-bootstrap";
+import Toasts from "../Toasts/Toasts";
 
 class Stock extends Component {
   constructor(props) {
@@ -14,21 +15,34 @@ class Stock extends Component {
 
     this.state = {
       showResults: false,
-      showBtn: true
+      showBtn: true,
+      classesToAdd: "",
+      showToasts: false,
     };
   }
 
   openAddStock = () => {
     this.setState({
       showResults: true,
-      showBtn: false
+      showBtn: false,
+      classesToAdd: "",
+      showToasts: false,
     });
   };
 
   closeAddStock = () => {
     this.setState({
       showResults: false,
-      showBtn: true
+      showBtn: true,
+      classesToAdd: "bg-success show",
+      showToasts: true,
+    });
+  };
+
+  handleToasts = () => {
+    this.setState({
+      classesToAdd: "",
+      showToasts: false,
     });
   };
 
@@ -140,8 +154,17 @@ class Stock extends Component {
           onBtnClick={this.openAddStock}
           showBtn={this.state.showBtn}
         />
-        {this.state.showResults ? <AddStock onBtnClick={this.closeAddStock} /> : null}
+        {this.state.showResults ? (
+          <AddStock onBtnClick={this.closeAddStock} />
+        ) : null}
         <Tables thValues={thValues} tdData={tdDat} />
+        {this.state.showToasts ? (
+          <Toasts
+            classesToAdd={this.state.classesToAdd}
+            handleToasts={this.handleToasts}
+            messageToShow="Stock added!"
+          />
+        ) : null}
       </>
     );
   }

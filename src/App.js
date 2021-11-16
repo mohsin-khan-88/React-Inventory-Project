@@ -13,22 +13,24 @@ import Expense from "./components/Expense/Expense";
 
 function App() {
   return (
-    <Router>
-      <div className="container-fluid m-0 p-0">
-        <div className="row m-0 p-0">
-          <Sidebar />
-          <div className="col col-md-9">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/stock" element={<Stock />} />
-              <Route path="/sales" element={<Sales />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/expense" element={<Expense />} />
-            </Routes>
+    <>
+      <Router>
+        <div className="container-fluid m-0 p-0">
+          <div className="row m-0 p-0">
+            <Sidebar />
+            <div className="col col-md-9">
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/stock" element={<Stock />} />
+                <Route path="/sales" element={<Sales />} />
+                <Route path="/reports" element={<Reports />} />
+                <Route path="/expense" element={<Expense />} />
+              </Routes>
+            </div>
           </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </>
   );
 }
 
