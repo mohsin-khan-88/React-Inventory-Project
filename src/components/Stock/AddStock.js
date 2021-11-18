@@ -2,7 +2,6 @@ import React, { Component } from "react";
 class AddStock extends Component {
   AddStock = (e) => {
     e.preventDefault();
-    console.log("Add Stock Clicked.");
 
     const {
       productName,
@@ -65,7 +64,52 @@ class AddStock extends Component {
     }
   };
 
-  render() {
+  render(props) {
+    const stockCategories = [
+      {
+        catId: "1",
+        catName: "Category 1",
+      },
+      {
+        catId: "2",
+        catName: "Category 2",
+      },
+      {
+        catId: "3",
+        catName: "Category 3",
+      },
+      {
+        catId: "4",
+        catName: "Category 4",
+      },
+      {
+        catId: "5",
+        catName: "Category 5",
+      },
+    ];
+
+    const catData = stockCategories.map((category) => (
+      <option value={category.catId}>{category.catName}</option>
+    ));
+
+    const formData = this.props.editData;
+
+    let productName = "";
+    let productPrice = "";
+    let productQuantity = "";
+    let productCategory = "";
+    let productImage = "";
+
+    if (Object.keys(formData).length > 0 && this.props.editStock === true) {
+      const tdDat = Object.keys(formData).map((item) => {
+        productName = formData[item].name;
+        productPrice = formData[item].price;
+        productQuantity = formData[item].quantity;
+        productCategory = formData[item].category;
+        productImage = formData[item].img;
+      });
+    }
+
     return (
       <>
         <div className="container-fluid">
@@ -86,7 +130,7 @@ class AddStock extends Component {
                       aria-describedby="nameHelp"
                       placeholder="Enter Product Name"
                       className="form-control"
-                      required
+                      defaultValue={productName}
                     />
                     <div class="invalid-feedback">Cannot be blank!</div>
                   </div>
@@ -99,6 +143,7 @@ class AddStock extends Component {
                       aria-describedby="priceHelp"
                       placeholder="Enter Price"
                       className="form-control"
+                      defaultValue={productPrice}
                     />
                     <div class="invalid-feedback">Cannot be blank!</div>
                   </div>
@@ -113,6 +158,7 @@ class AddStock extends Component {
                       aria-describedby="quantityHelp"
                       placeholder="Enter Quantity"
                       className="form-control"
+                      defaultValue={productQuantity}
                     />
                     <div class="invalid-feedback">Cannot be blank!</div>
                   </div>
@@ -121,16 +167,12 @@ class AddStock extends Component {
                     <select
                       name="productCategory"
                       id="productCategory"
-                      aria-label="Catergory"
+                      aria-label="Category"
                       className="form-select"
+                      defaultValue={productCategory}
                     >
                       <option value="">Select Category</option>
-                      <option vlaue="cat-1">Category 1</option>
-                      <option vlaue="cat-2">Category 2</option>
-                      <option vlaue="cat-3">Category 3</option>
-                      <option vlaue="cat-4">Category 4</option>
-                      <option vlaue="cat-5">Category 5</option>
-                      <option vlaue="cat-6">Category 6</option>
+                      {catData}
                     </select>
                     <div class="invalid-feedback">Please select Category!</div>
                   </div>
@@ -146,6 +188,9 @@ class AddStock extends Component {
                       placeholder="Upload Product Image"
                       className="form-control"
                     />
+                    
+                    {this.props.editStock ? <div id="fileHelp" class="form-text">Selected file: {productImage}</div> : null  }
+                    
                     <div class="invalid-feedback">
                       Please select product image!
                     </div>

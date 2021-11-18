@@ -12,7 +12,6 @@ export class Toasts extends Component {
   }
 
   handleToast = () => {
-    console.log("Close");
     this.props.handleToasts(false);
   };
 
