@@ -17,7 +17,7 @@ class Stock extends Component {
       showBtn: true,
       classesToAdd: "",
       showToasts: false,
-      editStock: false
+      editStock: false,
     };
   }
 
@@ -47,17 +47,17 @@ class Stock extends Component {
   };
 
   editStock = (id, e) => {
-    console.log('Edit Stock', id);
+    console.log("Edit Stock", id);
     this.setState({
       showResults: true,
       showBtn: false,
-      editStock: true
+      editStock: true,
     });
-  }
+  };
 
   deleteStock = (id, e) => {
-    console.log('Delete Stock:', id);
-  }
+    console.log("Delete Stock:", id);
+  };
 
   render() {
     const thValues = [
@@ -70,55 +70,66 @@ class Stock extends Component {
       "Action",
     ];
 
-    const data = {"1":{
-      img: "https://via.placeholder.com/50",
-      name: "Michael Kors",
-      price: "12000",
-      quantity: "500",
-      category: "1",
-    }, "2":{
-      img: "https://via.placeholder.com/50",
-      name: "Mac",
-      price: "22000",
-      quantity: "1000",
-      category: "1",
-    }, "3":{
-      img: "https://via.placeholder.com/50",
-      name: "Burberry",
-      price: "23500",
-      quantity: "300",
-      category: "1",
-    }}
+    const data = {
+      1: {
+        img: "https://via.placeholder.com/50",
+        name: "Michael Kors",
+        price: "12000",
+        quantity: "500",
+        category: "1",
+      },
+      2: {
+        img: "https://via.placeholder.com/50",
+        name: "Mac",
+        price: "22000",
+        quantity: "1000",
+        category: "1",
+      },
+      3: {
+        img: "https://via.placeholder.com/50",
+        name: "Burberry",
+        price: "23500",
+        quantity: "300",
+        category: "1",
+      },
+    };
 
-    const editData = {"1":{
-      img: "https://via.placeholder.com/50",
-      name: "Michael Kors",
-      price: "12000",
-      quantity: "500",
-      category: "1",
-    }}
+    const editData = {
+      1: {
+        img: "https://via.placeholder.com/50",
+        name: "Michael Kors",
+        price: "12000",
+        quantity: "500",
+        category: "1",
+      },
+    };
 
     const tdDat = Object.keys(data).map((item) => (
       <tr key={item}>
-      <th scope="row">{item}</th>
-      <td>
-        <img src={data[item].img} alt="img" />
-      </td>
-      <td>{data[item].name}</td>
-      <td>${data[item].price}</td>
-      <td>{data[item].quantity}</td>
-      <td>{data[item].category}</td>
-      <td>
-        <button className='border-0 bg-transparent' onClick={(e) => this.editStock(item, e)}>
-          <FontAwesomeIcon className="m-1" icon={faEdit} />
-        </button>
-          <button className='border-0 bg-transparent' onClick={(e) => this.deleteStock(item, e)}>
-          <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
-        </button>
-      </td>
-    </tr>
-      ));
-
+        <th scope="row">{item}</th>
+        <td>
+          <img src={data[item].img} alt="img" />
+        </td>
+        <td>{data[item].name}</td>
+        <td>${data[item].price}</td>
+        <td>{data[item].quantity}</td>
+        <td>{data[item].category}</td>
+        <td>
+          <button
+            className="border-0 bg-transparent"
+            onClick={(e) => this.editStock(item, e)}
+          >
+            <FontAwesomeIcon className="m-1" icon={faEdit} />
+          </button>
+          <button
+            className="border-0 bg-transparent"
+            onClick={(e) => this.deleteStock(item, e)}
+          >
+            <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
+          </button>
+        </td>
+      </tr>
+    ));
 
     return (
       <>
@@ -138,7 +149,11 @@ class Stock extends Component {
           showBtn={this.state.showBtn}
         />
         {this.state.showResults ? (
-          <AddStock onBtnClick={this.closeAddStock} editData={editData} editStock={this.state.editStock} />
+          <AddStock
+            onBtnClick={this.closeAddStock}
+            editData={editData}
+            editStock={this.state.editStock}
+          />
         ) : null}
         <Tables thValues={thValues} tdData={tdDat} />
         {this.state.showToasts ? (

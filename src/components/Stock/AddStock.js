@@ -65,31 +65,26 @@ class AddStock extends Component {
   };
 
   render(props) {
-    const stockCategories = [
-      {
-        catId: "1",
+    const stockCategories = {
+      1: {
         catName: "Category 1",
       },
-      {
-        catId: "2",
+      2: {
         catName: "Category 2",
       },
-      {
-        catId: "3",
+      3: {
         catName: "Category 3",
       },
-      {
-        catId: "4",
+      4: {
         catName: "Category 4",
       },
-      {
-        catId: "5",
+      5: {
         catName: "Category 5",
       },
-    ];
+    };
 
-    const catData = stockCategories.map((category) => (
-      <option value={category.catId}>{category.catName}</option>
+    const catData = Object.keys(stockCategories).map((category) => (
+      <option value={category}>{stockCategories[category].catName}</option>
     ));
 
     const formData = this.props.editData;
@@ -188,9 +183,13 @@ class AddStock extends Component {
                       placeholder="Upload Product Image"
                       className="form-control"
                     />
-                    
-                    {this.props.editStock ? <div id="fileHelp" class="form-text">Selected file: {productImage}</div> : null  }
-                    
+
+                    {this.props.editStock ? (
+                      <div id="fileHelp" class="form-text">
+                        Selected file: {productImage}
+                      </div>
+                    ) : null}
+
                     <div class="invalid-feedback">
                       Please select product image!
                     </div>
