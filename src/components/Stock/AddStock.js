@@ -84,7 +84,7 @@ class AddStock extends Component {
     };
 
     // fetch("https://jsonplaceholder.typicode.com/todos/1")
-    fetch("https://github.com/mohsin-khan-88/React-Inventory-Project/db.json")
+    fetch("https://github.com/mohsin-khan-88/React-Inventory-Project/tree/master/json")
       .then((response) => response.json())
       .then((json) => console.log(json));
 
