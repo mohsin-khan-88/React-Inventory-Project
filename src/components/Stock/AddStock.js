@@ -83,6 +83,10 @@ class AddStock extends Component {
       },
     };
 
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+
     const catData = Object.keys(stockCategories).map((category) => (
       <option value={category}>{stockCategories[category].catName}</option>
     ));
