@@ -1,5 +1,5 @@
 {
-  "Stocks": [
+  "stocks": [
     {
       "1": {
         "img": "https://via.placeholder.com/50",
@@ -24,7 +24,7 @@
       }
     }
   ],
-  "Stock-categories": [
+  "stock-categories": [
     {
       "1": {
         "catName": "Category 1"
@@ -43,7 +43,5 @@
       }
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "profile": { "name": "typicode" }
 }

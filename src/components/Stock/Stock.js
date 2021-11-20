@@ -17,7 +17,7 @@ class Stock extends Component {
       showBtn: true,
       classesToAdd: "",
       showToasts: false,
-      editStock: false,
+      editStock: false
     };
   }
 

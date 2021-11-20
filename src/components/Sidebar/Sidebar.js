@@ -19,47 +19,42 @@ function Sidebar() {
           <FontAwesomeIcon className="logoIcon" icon={faBoxOpen} />
           <h3 className="text-uppercase text-center logo">Inventory</h3>
         </div>
-        <ul class="nav flex-column nav-pills">
-          <li class="nav-item">
+        <ul className="nav flex-column nav-pills">
+          <li className="nav-item">
             <NavLink
               exact={true}
-              activeClassName="active"
               className="nav-link text-uppercase mt-1 mb-1"
               to="/"
             >
               <FontAwesomeIcon icon={faTachometerAlt} /> Dashboard
             </NavLink>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <NavLink
-              activeClassName="active"
               className="nav-link text-uppercase mt-1 mb-1"
               to="/stock"
             >
               <FontAwesomeIcon icon={faCubes} /> Stock
             </NavLink>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <NavLink
-              activeClassName="active"
               className="nav-link text-uppercase mt-1 mb-1"
               to="/sales"
             >
               <FontAwesomeIcon icon={faChartBar} /> Sales
             </NavLink>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <NavLink
-              activeClassName="active"
               className="nav-link text-uppercase mt-1 mb-1"
               to="/expense"
             >
               <FontAwesomeIcon icon={faHandHoldingUsd} /> Expense
             </NavLink>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <NavLink
-              activeClassName="active"
               className="nav-link text-uppercase mt-1 mb-1"
               to="/reports"
             >

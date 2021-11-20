@@ -83,13 +83,14 @@ class AddStock extends Component {
       },
     };
 
-    // fetch("https://jsonplaceholder.typicode.com/todos/1")
-    fetch("https://github.com/mohsin-khan-88/React-Inventory-Project/tree/master/json")
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    // fetch(
+    //   "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/Stocks"
+    // )
+    //   .then((response) => response.json())
+    //   .then((json) => console.log(json));
 
     const catData = Object.keys(stockCategories).map((category) => (
-      <option value={category}>{stockCategories[category].catName}</option>
+      <option key={category} value={category}>{stockCategories[category].catName}</option>
     ));
 
     const formData = this.props.editData;
@@ -132,7 +133,7 @@ class AddStock extends Component {
                       className="form-control"
                       defaultValue={productName}
                     />
-                    <div class="invalid-feedback">Cannot be blank!</div>
+                    <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
                   <div className="col mb-2">
                     <label className="form-label">Price</label>
@@ -145,7 +146,7 @@ class AddStock extends Component {
                       className="form-control"
                       defaultValue={productPrice}
                     />
-                    <div class="invalid-feedback">Cannot be blank!</div>
+                    <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
                 </div>
                 <div className="row">
@@ -160,7 +161,7 @@ class AddStock extends Component {
                       className="form-control"
                       defaultValue={productQuantity}
                     />
-                    <div class="invalid-feedback">Cannot be blank!</div>
+                    <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
                   <div className="col mb-2">
                     <label className="form-label">Category</label>
@@ -174,7 +175,9 @@ class AddStock extends Component {
                       <option value="">Select Category</option>
                       {catData}
                     </select>
-                    <div class="invalid-feedback">Please select Category!</div>
+                    <div className="invalid-feedback">
+                      Please select Category!
+                    </div>
                   </div>
                 </div>
                 <div className="row">
@@ -190,12 +193,12 @@ class AddStock extends Component {
                     />
 
                     {this.props.editStock ? (
-                      <div id="fileHelp" class="form-text">
+                      <div id="fileHelp" className="form-text">
                         Selected file: {productImage}
                       </div>
                     ) : null}
 
-                    <div class="invalid-feedback">
+                    <div className="invalid-feedback">
                       Please select product image!
                     </div>
                   </div>
