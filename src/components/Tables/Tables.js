@@ -4,7 +4,7 @@ import "./Tables.css";
 export class Tables extends Component {
   render() {
     const thValues = this.props.thValues;
-    const thVal = thValues.map((value) => <th scope="col">{value}</th>);
+    const thVal = thValues.map((value) => <th key={value} scope="col">{value}</th>);
     return (
       <>
         <div className="container-fluid tables">

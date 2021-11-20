@@ -90,7 +90,9 @@ class AddStock extends Component {
     //   .then((json) => console.log(json));
 
     const catData = Object.keys(stockCategories).map((category) => (
-      <option key={category} value={category}>{stockCategories[category].catName}</option>
+      <option key={category} value={category}>
+        {stockCategories[category].catName}
+      </option>
     ));
 
     const formData = this.props.editData;

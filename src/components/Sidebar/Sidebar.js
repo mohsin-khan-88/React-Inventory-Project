@@ -22,7 +22,7 @@ function Sidebar() {
         <ul className="nav flex-column nav-pills">
           <li className="nav-item">
             <NavLink
-              exact={true}
+              exact='true'
               className="nav-link text-uppercase mt-1 mb-1"
               to="/"
             >
@@ -30,18 +30,12 @@ function Sidebar() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink
-              className="nav-link text-uppercase mt-1 mb-1"
-              to="/stock"
-            >
+            <NavLink className="nav-link text-uppercase mt-1 mb-1" to="/stock">
               <FontAwesomeIcon icon={faCubes} /> Stock
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink
-              className="nav-link text-uppercase mt-1 mb-1"
-              to="/sales"
-            >
+            <NavLink className="nav-link text-uppercase mt-1 mb-1" to="/sales">
               <FontAwesomeIcon icon={faChartBar} /> Sales
             </NavLink>
           </li>

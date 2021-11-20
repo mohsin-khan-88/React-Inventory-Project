@@ -26,15 +26,9 @@
   ],
   "stock-categories": [
     {
-      "1": {
-        "catName": "Category 1"
-      },
-      "2": {
-        "catName": "Category 2"
-      },
-      "3": {
-        "catName": "Category 3"
-      },
+      "1": { "catName": "Category 1" },
+      "2": { "catName": "Category 2" },
+      "3": { "catName": "Category 3" },
       "4": {
         "catName": "Category 4"
       },
