@@ -9,7 +9,7 @@
       "category": "1"
     },
     {
-      "id": 1,
+      "id": 2,
       "img": "https://via.placeholder.com/50",
       "name": "Mac",
       "price": "22000",
@@ -17,7 +17,7 @@
       "category": "1"
     },
     {
-      "id": 1,
+      "id": 3,
       "img": "https://via.placeholder.com/50",
       "name": "Burberry",
       "price": "23500",
@@ -39,9 +39,11 @@
       "catName": "Category 3"
     },
     {
+      "id": 4,
       "catName": "Category 4"
     },
     {
+      "id": 5,
       "catName": "Category 5"
     }
   ],
