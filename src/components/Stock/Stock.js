@@ -7,18 +7,32 @@ import Tables from "../Tables/Tables";
 import AddStock from "./AddStock";
 import { Container, Row, Col } from "react-bootstrap";
 import Toasts from "../Toasts/Toasts";
+import axios from "axios";
 
 class Stock extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      stocksData: [],
+      editStocksData: [],
       showResults: false,
       showBtn: true,
       classesToAdd: "",
       showToasts: false,
       editStock: false,
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get(
+        "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks"
+      )
+      .then((res) => {
+        const stocksData = res.data;
+        this.setState({ stocksData });
+      });
   }
 
   openAddStock = () => {
@@ -47,7 +61,15 @@ class Stock extends Component {
   };
 
   editStock = (id, e) => {
-    console.log("Edit Stock", id);
+    const apiUrl = "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks/" + id;
+    axios
+      .get(
+        apiUrl
+      )
+      .then((res) => {
+        const editStocksData = res.data;
+        this.setState({ editStocksData });
+      });
     this.setState({
       showResults: true,
       showBtn: false,
@@ -70,60 +92,27 @@ class Stock extends Component {
       "Action",
     ];
 
-    const data = {
-      1: {
-        img: "https://via.placeholder.com/50",
-        name: "Michael Kors",
-        price: "12000",
-        quantity: "500",
-        category: "1",
-      },
-      2: {
-        img: "https://via.placeholder.com/50",
-        name: "Mac",
-        price: "22000",
-        quantity: "1000",
-        category: "1",
-      },
-      3: {
-        img: "https://via.placeholder.com/50",
-        name: "Burberry",
-        price: "23500",
-        quantity: "300",
-        category: "1",
-      },
-    };
-
-    const editData = {
-      1: {
-        img: "https://via.placeholder.com/50",
-        name: "Michael Kors",
-        price: "12000",
-        quantity: "500",
-        category: "1",
-      },
-    };
-
-    const tdDat = Object.keys(data).map((item) => (
-      <tr key={item}>
-        <th scope="row">{item}</th>
+    let data = this.state.stocksData;
+    const tdDat = data.map((item) => (
+      <tr key={item.id}>
+        <th scope="row">{item.id}</th>
         <td>
-          <img src={data[item].img} alt="img" />
+          <img src={item.img} alt="img" />
         </td>
-        <td>{data[item].name}</td>
-        <td>${data[item].price}</td>
-        <td>{data[item].quantity}</td>
-        <td>{data[item].category}</td>
+        <td>{item.name}</td>
+        <td>${item.price}</td>
+        <td>{item.quantity}</td>
+        <td>{item.category}</td>
         <td>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.editStock(item, e)}
+            onClick={(e) => this.editStock(item.id, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faEdit} />
           </button>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.deleteStock(item, e)}
+            onClick={(e) => this.deleteStock(item.id, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
           </button>
@@ -151,7 +140,7 @@ class Stock extends Component {
         {this.state.showResults ? (
           <AddStock
             onBtnClick={this.closeAddStock}
-            editData={editData}
+            editData={this.state.editStocksData}
             editStock={this.state.editStock}
           />
         ) : null}
