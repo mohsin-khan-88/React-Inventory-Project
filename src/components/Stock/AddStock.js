@@ -1,15 +1,36 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
+import axios from "axios";
 class AddStock extends Component {
   constructor(props) {
     super(props);
+    this.fileInput = React.createRef();
 
     this.state = {
+      productId: 0,
       productName: "",
       productPrice: "",
       productQuality: "",
       productCategory: "",
       productImage: "",
     };
+  }
+
+  componentDidMount() {
+    const apiUrl =
+      "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks/" +
+      this.props.editStocksId;
+    axios.get(apiUrl).then((res) => {
+      const editStocksData = res.data;
+      console.log(editStocksData);
+      this.setState({
+        productId: editStocksData.id,
+        productName: editStocksData.name,
+        productPrice: editStocksData.price,
+        productQuantity: editStocksData.quantity,
+        productCategory: editStocksData.category,
+        productImage: editStocksData.img,
+      });
+    });
   }
 
   AddStock = (e) => {
@@ -25,7 +46,6 @@ class AddStock extends Component {
 
     const findFormErrors = () => {
       const newErrors = {};
-      console.log(this.state.productName);
 
       if (!productName.value || productName.value === "") {
         newErrors.productName = "Product Name cannot be blank!";
@@ -66,7 +86,7 @@ class AddStock extends Component {
     if (Object.keys(newErrors).length > 0) {
       console.log(newErrors);
     } else {
-      console.log({
+      this.setState({
         productName: productName.value,
         productPrice: productPrice.value,
         productQuantity: productQuantity.value,
@@ -79,56 +99,43 @@ class AddStock extends Component {
   };
 
   handleChange = (e) => {
-    console.log('handle change');
-    this.setState({ 
-      productName: e.target.value
-    })
-  }
+    console.log(e.target.value);
+    console.log(e.target.name);
+    const inpName = e.target.name;
+    this.setState({
+      [inpName]: e.target.value,
+    });
+  };
 
   render(props) {
     const stockCategories = {
       1: {
+        id: 1,
         catName: "Category 1",
       },
       2: {
+        id: 2,
         catName: "Category 2",
       },
       3: {
+        id: 3,
         catName: "Category 3",
       },
       4: {
+        id: 4,
         catName: "Category 4",
       },
       5: {
+        id: 5,
         catName: "Category 5",
       },
     };
 
     const catData = Object.keys(stockCategories).map((category) => (
-      <option key={category} value={category}>
+      <option key={category} value={stockCategories[category].id}>
         {stockCategories[category].catName}
       </option>
     ));
-
-    const formData = this.props.editData;
-
-    console.log(formData);
-
-    let productName = "";
-    let productPrice = "";
-    let productQuantity = "";
-    let productCategory = "";
-    let productImage = "";
-
-    if (Object.keys(formData).length > 0 && this.props.editStock === true) {
-      const tdDat = Object.keys(formData).map((item) => {
-        productName = formData[item].name;
-        productPrice = formData[item].price;
-        productQuantity = formData[item].quantity;
-        productCategory = formData[item].category;
-        productImage = formData[item].img;
-      });
-    }
 
     return (
       <>
@@ -150,7 +157,7 @@ class AddStock extends Component {
                       aria-describedby="nameHelp"
                       placeholder="Enter Product Name"
                       className="form-control"
-                      defaultValue={this.state.productName}
+                      value={this.state.productName}
                       onChange={this.handleChange}
                     />
                     <div className="invalid-feedback">Cannot be blank!</div>
@@ -164,7 +171,8 @@ class AddStock extends Component {
                       aria-describedby="priceHelp"
                       placeholder="Enter Price"
                       className="form-control"
-                      defaultValue={this.state.productPrice}
+                      value={this.state.productPrice}
+                      onChange={this.handleChange}
                     />
                     <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
@@ -179,7 +187,8 @@ class AddStock extends Component {
                       aria-describedby="quantityHelp"
                       placeholder="Enter Quantity"
                       className="form-control"
-                      defaultValue={this.state.productQuantity}
+                      value={this.state.productQuantity}
+                      onChange={this.handleChange}
                     />
                     <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
@@ -190,9 +199,9 @@ class AddStock extends Component {
                       id="productCategory"
                       aria-label="Category"
                       className="form-select"
-                      defaultValue={this.state.productCategory}
+                      value={this.state.productCategory}
+                      onChange={this.handleChange}
                     >
-                      <option value="">Select Category</option>
                       {catData}
                     </select>
                     <div className="invalid-feedback">
@@ -210,6 +219,7 @@ class AddStock extends Component {
                       aria-describedby="imageHelp"
                       placeholder="Upload Product Image"
                       className="form-control"
+                      ref={this.fileInput}
                     />
 
                     {this.props.editStock ? (

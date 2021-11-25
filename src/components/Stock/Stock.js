@@ -15,7 +15,7 @@ class Stock extends Component {
 
     this.state = {
       stocksData: [],
-      editStocksData: [],
+      editStocksId: 0,
       showResults: false,
       showBtn: true,
       classesToAdd: "",
@@ -31,6 +31,7 @@ class Stock extends Component {
       )
       .then((res) => {
         const stocksData = res.data;
+        console.log(stocksData);
         this.setState({ stocksData });
       });
   }
@@ -61,16 +62,9 @@ class Stock extends Component {
   };
 
   editStock = (id, e) => {
-    const apiUrl = "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks/" + id;
-    axios
-      .get(
-        apiUrl
-      )
-      .then((res) => {
-        const editStocksData = res.data;
-        this.setState({ editStocksData });
-      });
+    console.log(id);
     this.setState({
+      editStocksId: id,
       showResults: true,
       showBtn: false,
       editStock: true,
@@ -140,7 +134,7 @@ class Stock extends Component {
         {this.state.showResults ? (
           <AddStock
             onBtnClick={this.closeAddStock}
-            editData={this.state.editStocksData}
+            editStocksId={this.state.editStocksId}
             editStock={this.state.editStock}
           />
         ) : null}
