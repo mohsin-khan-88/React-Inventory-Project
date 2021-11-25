@@ -14,7 +14,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
-      "category": "1"
+      "category": "2"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "name": "Burberry",
       "price": "23500",
       "quantity": "300",
-      "category": "1"
+      "category": "2"
     }
   ],
   "stock-categories": [
