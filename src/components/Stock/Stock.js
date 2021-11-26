@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import "./Stock.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -12,16 +12,17 @@ import axios from "axios";
 class Stock extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       stocksData: [],
-      editStocksId: 0,
-      showResults: false,
+      showResults: "d-none",
       showBtn: true,
       classesToAdd: "",
       showToasts: false,
       editStock: false,
+      formBtnName: 'Add Stock',
     };
+
+    this.editRef = React.createRef();
   }
 
   componentDidMount() {
@@ -38,7 +39,7 @@ class Stock extends Component {
 
   openAddStock = () => {
     this.setState({
-      showResults: true,
+      showResults: "d-block",
       showBtn: false,
       classesToAdd: "",
       showToasts: false,
@@ -47,10 +48,12 @@ class Stock extends Component {
 
   closeAddStock = () => {
     this.setState({
-      showResults: false,
+      showResults: "d-none",
       showBtn: true,
       classesToAdd: "bg-success show",
       showToasts: true,
+      editStock: false,
+      formBtnName: 'Add Stock',
     });
   };
 
@@ -62,13 +65,21 @@ class Stock extends Component {
   };
 
   editStock = (id, e) => {
-    console.log(id);
     this.setState({
+      classesToAdd: "",
+      showToasts: false,
       editStocksId: id,
-      showResults: true,
+      showResults: "d-block",
       showBtn: false,
       editStock: true,
+      formBtnName: 'Update Stock'
     });
+
+    if (this.editRef.current !== null) {
+      this.editRef.current.editStocksData(id);
+    } else {
+      console.log(this.editRef);
+    }
   };
 
   deleteStock = (id, e) => {
@@ -131,13 +142,13 @@ class Stock extends Component {
           onBtnClick={this.openAddStock}
           showBtn={this.state.showBtn}
         />
-        {this.state.showResults ? (
-          <AddStock
-            onBtnClick={this.closeAddStock}
-            editStocksId={this.state.editStocksId}
-            editStock={this.state.editStock}
-          />
-        ) : null}
+        <AddStock
+          showResults={this.state.showResults}
+          onBtnClick={this.closeAddStock}
+          editStock={this.state.editStock}
+          btnName={this.state.formBtnName}
+          ref={this.editRef}
+        />
         <Tables thValues={thValues} tdData={tdDat} />
         {this.state.showToasts ? (
           <Toasts

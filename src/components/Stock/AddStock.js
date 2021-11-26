@@ -1,36 +1,18 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 class AddStock extends Component {
   constructor(props) {
     super(props);
-    this.fileInput = React.createRef();
 
     this.state = {
-      productId: 0,
+      productId: "",
       productName: "",
       productPrice: "",
-      productQuality: "",
+      productQuantity: "",
       productCategory: "",
       productImage: "",
+      productImageData: "",
     };
-  }
-
-  componentDidMount() {
-    const apiUrl =
-      "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks/" +
-      this.props.editStocksId;
-    axios.get(apiUrl).then((res) => {
-      const editStocksData = res.data;
-      console.log(editStocksData);
-      this.setState({
-        productId: editStocksData.id,
-        productName: editStocksData.name,
-        productPrice: editStocksData.price,
-        productQuantity: editStocksData.quantity,
-        productCategory: editStocksData.category,
-        productImage: editStocksData.img,
-      });
-    });
   }
 
   AddStock = (e) => {
@@ -71,9 +53,16 @@ class AddStock extends Component {
       } else {
         productCategory.className = "form-control is-valid";
       }
-      if (!productImage.value || productImage.value === "") {
-        newErrors.productImage = "Product image cannot be blank!";
-        productImage.className = "form-control is-invalid";
+      if (
+        !productImage.dataset.filevalue ||
+        productImage.dataset.filevalue === ""
+      ) {
+        if (!productImage.value || productImage.value === "") {
+          newErrors.productImage = "Product image cannot be blank!";
+          productImage.className = "form-control is-invalid";
+        } else {
+          productImage.className = "form-control is-valid";
+        }
       } else {
         productImage.className = "form-control is-valid";
       }
@@ -94,21 +83,74 @@ class AddStock extends Component {
         productImage: productImage.value,
       });
 
+      console.log(this.state);
+      
+      const apiUrl =
+      "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks";
+      axios
+        .post(apiUrl, {
+          id: 0,
+          name: productName.value,
+          price: productPrice.value,
+          quantity: productQuantity.value,
+          category: productCategory.value,
+          img: productImage.value,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
       this.props.onBtnClick(true);
+
+      // Clear form fields data and errors
+      this.setState({
+        productName: "",
+        productPrice: "",
+        productQuantity: "",
+        productCategory: "",
+        productImage: "",
+        productImageData: "",
+      });
+      productName.className = "form-control";
+      productPrice.className = "form-control";
+      productQuantity.className = "form-control";
+      productCategory.className = "form-control";
+      productImage.className = "form-control";
     }
   };
 
   handleChange = (e) => {
-    console.log(e.target.value);
-    console.log(e.target.name);
     const inpName = e.target.name;
     this.setState({
       [inpName]: e.target.value,
     });
   };
 
-  render(props) {
+  editStocksData = (id) => {
+    console.log("this function is triggered with id: " + id);
+    const apiUrl =
+      "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks/" +
+      id;
+    axios.get(apiUrl).then((res) => {
+      const editStocksData = res.data;
+      console.log(editStocksData);
+      this.setState({
+        productId: editStocksData.id,
+        productName: editStocksData.name,
+        productPrice: editStocksData.price,
+        productQuantity: editStocksData.quantity,
+        productCategory: editStocksData.category,
+        productImageData: editStocksData.img,
+      });
+    });
+  };
+
+  render() {
     const stockCategories = {
+      0: {
+        id: "",
+        catName: "Please select category",
+      },
       1: {
         id: 1,
         catName: "Category 1",
@@ -139,7 +181,7 @@ class AddStock extends Component {
 
     return (
       <>
-        <div className="container-fluid">
+        <div className={"container-fluid " + this.props.showResults}>
           <div className="row">
             <div className="col">
               <form
@@ -219,12 +261,14 @@ class AddStock extends Component {
                       aria-describedby="imageHelp"
                       placeholder="Upload Product Image"
                       className="form-control"
-                      ref={this.fileInput}
+                      value={this.state.productImage}
+                      data-filevalue={this.state.productImageData}
+                      onChange={this.handleChange}
                     />
 
                     {this.props.editStock ? (
                       <div id="fileHelp" className="form-text">
-                        Selected file: {this.state.productImage}
+                        Selected file: {this.state.productImageData}
                       </div>
                     ) : null}
 
@@ -235,7 +279,9 @@ class AddStock extends Component {
                 </div>
                 <div className="row">
                   <div className="col my-2">
-                    <button className="btn btn-outline-dark">Add Stock</button>
+                    <button className="btn btn-outline-dark">
+                      {this.props.btnName}
+                    </button>
                   </div>
                 </div>
               </form>
