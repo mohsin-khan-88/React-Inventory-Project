@@ -6,7 +6,8 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
-      "category": "1"
+      "category": "1",
+      "categoryName": " Category 1"
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
-      "category": "2"
+      "category": "2",
+      "categoryName": " Category 2"
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "name": "Burberry",
       "price": "23500",
       "quantity": "300",
-      "category": "3"
+      "category": "3",
+      "categoryName": " Category 3"
     }
   ],
   "stock-categories": [
