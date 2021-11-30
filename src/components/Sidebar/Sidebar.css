@@ -1,48 +1,89 @@
-
 .sidebar {
-    min-height: 100vh;
-    box-shadow: 1px 0px #eee;
+  min-height: 100vh;
+  box-shadow: 1px 0px #eee;
 }
 
 .sidebar > .nav-pills .nav-link {
-    border: 1px solid #000;
-    color: #000;
-    font-size: 18px;
+  border: 1px solid #000;
+  color: #000;
+  font-size: 18px;
 }
 
-.sidebar > .nav-pills .nav-link:hover, .sidebar > .nav-pills .show>.nav-link:hover {
-    background-color: #000;
-    color: #fff;
+.sidebar > .nav-pills .nav-link:hover,
+.sidebar > .nav-pills .show > .nav-link:hover {
+  background-color: #000;
+  color: #fff;
 }
 
-.sidebar > .nav-pills .nav-link.active, .sidebar > .nav-pills .show>.nav-link {
-    background-color: #000;
-    color: #fff;
+.sidebar > .nav-pills .nav-link.active,
+.sidebar > .nav-pills .show > .nav-link {
+  background-color: #000;
+  color: #fff;
 }
 
 .siderbar .cur-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .sidebar .logoCon {
-    margin: 0.5rem auto;
+  margin: 0.5rem auto;
 }
 
 .sidebar .logo {
-        margin: 0.5rem auto;
-        font-size: 22px;
-        font-family: sans-serif;
-        border: 1px solid #000;
-        border-left: none;
-        border-right: none;
-        padding: 0.25rem;
-        letter-spacing: 8px;
-        max-width: 200px;
-        font-family: 'Titillium Web', sans-serif;
+  margin: 0.5rem auto;
+  font-size: 22px;
+  font-family: sans-serif;
+  border: 1px solid #000;
+  border-left: none;
+  border-right: none;
+  padding: 0.25rem;
+  letter-spacing: 8px;
+  max-width: 200px;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .sidebar .logoIcon {
-    margin: auto;
-    display: block;
-    font-size: 30px;
+  margin: auto;
+  display: block;
+  font-size: 50px;
+  -webkit-animation: run 7s linear infinite;
+  -moz-animation: run 7s linear infinite;
+  animation: run 7s linear infinite;
+  position: relative;
+}
+
+@-moz-keyframes run {
+  0% {
+    left: -17%;
+  }
+  50% {
+    left: 17%;
+  }
+  100% {
+    left: -17%;
+  }
+}
+
+@-webkit-keyframes run {
+  0% {
+    left: -17%;
+  }
+  50% {
+    left: 17%;
+  }
+  100% {
+    left: -17%;
+  }
+}
+
+@keyframes run {
+  0% {
+    left: -17%;
+  }
+  50% {
+    left: 17%;
+  }
+  100% {
+    left: -17%;
+  }
 }

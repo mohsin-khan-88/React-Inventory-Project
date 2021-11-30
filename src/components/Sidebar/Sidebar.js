@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBoxOpen,
   faTachometerAlt,
   faCubes,
   faChartBar,
@@ -16,7 +15,7 @@ function Sidebar() {
     <>
       <div className="col col-md-3 border-end sidebar">
         <div className="logoCon">
-          <FontAwesomeIcon className="logoIcon" icon={faBoxOpen} />
+          <FontAwesomeIcon className="logoIcon" icon={faCubes} />
           <h3 className="text-uppercase text-center logo">Inventory</h3>
         </div>
         <ul className="nav flex-column nav-pills">

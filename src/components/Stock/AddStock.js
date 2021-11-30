@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../../utils/Api";
+
 class AddStock extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      stockCats: [],
       productId: "",
       productName: "",
       productPrice: "",
@@ -15,10 +16,23 @@ class AddStock extends Component {
     };
   }
 
+  componentDidMount() {
+    axios
+      .get("/stock-categories")
+      .then((res) => {
+        const stockCats = res.data;
+        this.setState({ stockCats });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   AddStock = (e) => {
     e.preventDefault();
 
     const {
+      productId,
       productName,
       productPrice,
       productQuantity,
@@ -76,6 +90,7 @@ class AddStock extends Component {
       console.log(newErrors);
     } else {
       this.setState({
+        productId: productId.value,
         productName: productName.value,
         productPrice: productPrice.value,
         productQuantity: productQuantity.value,
@@ -83,39 +98,66 @@ class AddStock extends Component {
         productImage: productImage.value,
       });
 
-      console.log(this.state);
-      
-      const apiUrl =
-      "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks";
-      axios
-        .post(apiUrl, {
-          id: 0,
-          name: productName.value,
-          price: productPrice.value,
-          quantity: productQuantity.value,
-          category: productCategory.value,
-          img: productImage.value,
-        })
-        .then((res) => {
-          console.log(res);
+      const apiData = {
+        id: productId.value,
+        name: productName.value,
+        price: productPrice.value,
+        quantity: productQuantity.value,
+        category: productCategory.value,
+        img: productImage.value,
+      };
+
+      const apiSuccess = () => {
+        const {
+          productName,
+          productPrice,
+          productQuantity,
+          productCategory,
+          productImage,
+        } = e.target.elements;
+
+        // Clear form fields data and errors
+        this.setState({
+          productName: "",
+          productPrice: "",
+          productQuantity: "",
+          productCategory: "",
+          productImage: "",
+          productImageData: "",
         });
 
-      this.props.onBtnClick(true);
+        productName.className = "form-control";
+        productPrice.className = "form-control";
+        productQuantity.className = "form-control";
+        productCategory.className = "form-control";
+        productImage.className = "form-control";
 
-      // Clear form fields data and errors
-      this.setState({
-        productName: "",
-        productPrice: "",
-        productQuantity: "",
-        productCategory: "",
-        productImage: "",
-        productImageData: "",
-      });
-      productName.className = "form-control";
-      productPrice.className = "form-control";
-      productQuantity.className = "form-control";
-      productCategory.className = "form-control";
-      productImage.className = "form-control";
+        this.props.onBtnClick(true);
+      };
+
+      if (!productId.value || productId.value === "") {
+        axios
+          .post("/stocks", { apiData })
+          .then((res) => {
+            if (res.status === 200 || res.status === 201) {
+              apiSuccess();
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else {
+        axios
+          .put("/stocks/" + productId.value, { apiData })
+          .then((res) => {
+            if (res.status === 200 || res.status === 201) {
+              apiSuccess();
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     }
   };
 
@@ -127,58 +169,25 @@ class AddStock extends Component {
   };
 
   editStocksData = (id) => {
-    console.log("this function is triggered with id: " + id);
-    const apiUrl =
-      "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks/" +
-      id;
-    axios.get(apiUrl).then((res) => {
-      const editStocksData = res.data;
-      console.log(editStocksData);
-      this.setState({
-        productId: editStocksData.id,
-        productName: editStocksData.name,
-        productPrice: editStocksData.price,
-        productQuantity: editStocksData.quantity,
-        productCategory: editStocksData.category,
-        productImageData: editStocksData.img,
+    axios
+      .get("/stocks/" + id)
+      .then((res) => {
+        const editStocksData = res.data;
+        this.setState({
+          productId: editStocksData.id,
+          productName: editStocksData.name,
+          productPrice: editStocksData.price,
+          productQuantity: editStocksData.quantity,
+          productCategory: editStocksData.category,
+          productImageData: editStocksData.img,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
       });
-    });
   };
 
   render() {
-    const stockCategories = {
-      0: {
-        id: "",
-        catName: "Please select category",
-      },
-      1: {
-        id: 1,
-        catName: "Category 1",
-      },
-      2: {
-        id: 2,
-        catName: "Category 2",
-      },
-      3: {
-        id: 3,
-        catName: "Category 3",
-      },
-      4: {
-        id: 4,
-        catName: "Category 4",
-      },
-      5: {
-        id: 5,
-        catName: "Category 5",
-      },
-    };
-
-    const catData = Object.keys(stockCategories).map((category) => (
-      <option key={category} value={stockCategories[category].id}>
-        {stockCategories[category].catName}
-      </option>
-    ));
-
     return (
       <>
         <div className={"container-fluid " + this.props.showResults}>
@@ -192,6 +201,15 @@ class AddStock extends Component {
                 <div className="row">
                   <div className="col mb-2">
                     <label className="form-label">Name</label>
+                    <input
+                      type="hidden"
+                      name="productId"
+                      id="productId"
+                      aria-describedby="idHelp"
+                      className="form-control"
+                      value={this.state.productId}
+                      onChange={this.handleChange}
+                    />
                     <input
                       type="text"
                       name="productName"
@@ -244,7 +262,12 @@ class AddStock extends Component {
                       value={this.state.productCategory}
                       onChange={this.handleChange}
                     >
-                      {catData}
+                      <option value="">Select Category</option>
+                      {this.state.stockCats.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.catName}
+                        </option>
+                      ))}
                     </select>
                     <div className="invalid-feedback">
                       Please select Category!

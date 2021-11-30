@@ -1,4 +1,4 @@
-import React, { Component, useRef } from "react";
+import React, { Component } from "react";
 import "./Stock.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +7,7 @@ import Tables from "../Tables/Tables";
 import AddStock from "./AddStock";
 import { Container, Row, Col } from "react-bootstrap";
 import Toasts from "../Toasts/Toasts";
-import axios from "axios";
+import axios from "../../utils/Api";
 
 class Stock extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Stock extends Component {
       classesToAdd: "",
       showToasts: false,
       editStock: false,
-      formBtnName: 'Add Stock',
+      formBtnName: "Add Stock",
     };
 
     this.editRef = React.createRef();
@@ -27,13 +27,13 @@ class Stock extends Component {
 
   componentDidMount() {
     axios
-      .get(
-        "https://my-json-server.typicode.com/mohsin-khan-88/React-Inventory-Project/stocks"
-      )
+      .get("/stocks")
       .then((res) => {
         const stocksData = res.data;
-        console.log(stocksData);
         this.setState({ stocksData });
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   }
 
@@ -53,7 +53,7 @@ class Stock extends Component {
       classesToAdd: "bg-success show",
       showToasts: true,
       editStock: false,
-      formBtnName: 'Add Stock',
+      formBtnName: "Add Stock",
     });
   };
 
@@ -72,7 +72,7 @@ class Stock extends Component {
       showResults: "d-block",
       showBtn: false,
       editStock: true,
-      formBtnName: 'Update Stock'
+      formBtnName: "Update Stock",
     });
 
     if (this.editRef.current !== null) {
@@ -107,7 +107,7 @@ class Stock extends Component {
         <td>{item.name}</td>
         <td>${item.price}</td>
         <td>{item.quantity}</td>
-        <td>{item.category}</td>
+        <td>{item.categoryName}</td>
         <td>
           <button
             className="border-0 bg-transparent"
@@ -154,7 +154,7 @@ class Stock extends Component {
           <Toasts
             classesToAdd={this.state.classesToAdd}
             handleToasts={this.handleToasts}
-            messageToShow="Stock added!"
+            messageToShow="Done!"
           />
         ) : null}
       </>
