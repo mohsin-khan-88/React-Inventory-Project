@@ -20,6 +20,8 @@ class Stock extends Component {
       showToasts: false,
       editStock: false,
       formBtnName: "Add Stock",
+      isLoading: false,
+      page: 1,
     };
 
     this.editRef = React.createRef();
@@ -31,11 +33,18 @@ class Stock extends Component {
 
   getStockData = () => {
     console.log("getStockData is called");
+    this.setState({
+      isLoading: true,
+    });
     axios
-      .get("/stocks")
+      .get("/stocks?_page=" + this.state.page + "&_limit=5")
       .then((res) => {
         const stocksData = res.data;
-        this.setState({ stocksData });
+        console.log(stocksData.length);
+        this.setState({ 
+          stocksData: stocksData,
+          isLoading: false,
+         });
       })
       .catch(function (error) {
         console.log(error);
@@ -63,7 +72,6 @@ class Stock extends Component {
     this.getStockData();
   };
 
-  
   handleToasts = () => {
     this.setState({
       classesToAdd: "",
@@ -110,6 +118,14 @@ class Stock extends Component {
     }
   };
 
+  loadMore = () => {
+    console.log('loadmore');
+    this.setState({
+      page: this.state.page + 1,
+    });
+    this.getStockData();
+  }
+
   render() {
     const thValues = [
       "#",
@@ -122,11 +138,15 @@ class Stock extends Component {
     ];
 
     let data = this.state.stocksData;
+    console.log(data);
     const tdDat = data.map((item) => (
       <tr key={item.id}>
         <th scope="row">{item.id}</th>
         <td>
-          <img src={item.img ? item.img : 'https://via.placeholder.com/50'} alt="img" />
+          <img
+            src={item.img ? item.img : "https://via.placeholder.com/50"}
+            alt="img"
+          />
         </td>
         <td>{item.name}</td>
         <td>${item.price}</td>
@@ -174,6 +194,18 @@ class Stock extends Component {
           ref={this.editRef}
         />
         <Tables thValues={thValues} tdData={tdDat} />
+        <div className="container-fluid btnNav">
+          <div className="row">
+            <div className="col">
+              <button
+                onClick={this.loadMore}
+                className="btn btn-outline-dark d-block mt-3 mb-3 m-auto"
+              >
+                {this.state.isLoading ? "Loading..." : "Load More"}
+              </button>
+            </div>
+          </div>
+        </div>
         {this.state.showToasts ? (
           <Toasts
             classesToAdd={this.state.classesToAdd}
