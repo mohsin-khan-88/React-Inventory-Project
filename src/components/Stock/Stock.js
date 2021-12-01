@@ -26,6 +26,11 @@ class Stock extends Component {
   }
 
   componentDidMount() {
+    this.getStockData();
+  }
+
+  getStockData = () => {
+    console.log("getStockData is called");
     axios
       .get("/stocks")
       .then((res) => {
@@ -35,7 +40,7 @@ class Stock extends Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
 
   openAddStock = () => {
     this.setState({
@@ -55,8 +60,10 @@ class Stock extends Component {
       editStock: false,
       formBtnName: "Add Stock",
     });
+    this.getStockData();
   };
 
+  
   handleToasts = () => {
     this.setState({
       classesToAdd: "",
@@ -83,7 +90,24 @@ class Stock extends Component {
   };
 
   deleteStock = (id, e) => {
-    console.log("Delete Stock:", id);
+    const itemName = this.state.stocksData[id - 1].name;
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Do you want to delete " + itemName)) {
+      axios
+        .delete("/stocks/" + id)
+        .then((res) => {
+          if (res.status == 200 || res.status === 201) {
+            this.setState({
+              classesToAdd: "bg-success show",
+              showToasts: true,
+            });
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      this.getStockData();
+    }
   };
 
   render() {
@@ -102,7 +126,7 @@ class Stock extends Component {
       <tr key={item.id}>
         <th scope="row">{item.id}</th>
         <td>
-          <img src={item.img} alt="img" />
+          <img src={item.img ? item.img : 'https://via.placeholder.com/50'} alt="img" />
         </td>
         <td>{item.name}</td>
         <td>${item.price}</td>

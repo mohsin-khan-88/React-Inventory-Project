@@ -11,8 +11,8 @@ class AddStock extends Component {
       productPrice: "",
       productQuantity: "",
       productCategory: "",
-      productImage: "",
-      productImageData: "",
+      productImage: [],
+      productImageName: "",
     };
   }
 
@@ -43,42 +43,29 @@ class AddStock extends Component {
     const findFormErrors = () => {
       const newErrors = {};
 
-      if (!productName.value || productName.value === "") {
+      if (!this.state.productName || this.state.productName === "") {
         newErrors.productName = "Product Name cannot be blank!";
         productName.className = "form-control is-invalid";
       } else {
         productName.className = "form-control is-valid";
       }
-      if (!productPrice.value || productPrice.value === "") {
+      if (!this.state.productPrice || this.state.productPrice === "") {
         newErrors.productPrice = "Product price cannot be blank!";
         productPrice.className = "form-control is-invalid";
       } else {
         productPrice.className = "form-control is-valid";
       }
-      if (!productQuantity.value || productQuantity.value === "") {
+      if (!this.state.productQuantity || this.state.productQuantity === "") {
         newErrors.productQuantity = "Product quantity cannot be blank!";
         productQuantity.className = "form-control is-invalid";
       } else {
         productQuantity.className = "form-control is-valid";
       }
-      if (!productCategory.value || productCategory.value === "") {
+      if (!this.state.productCategory || this.state.productCategory === "") {
         newErrors.productCategory = "Product category cannot be blank!";
         productCategory.className = "form-control is-invalid";
       } else {
         productCategory.className = "form-control is-valid";
-      }
-      if (
-        !productImage.dataset.filevalue ||
-        productImage.dataset.filevalue === ""
-      ) {
-        if (!productImage.value || productImage.value === "") {
-          newErrors.productImage = "Product image cannot be blank!";
-          productImage.className = "form-control is-invalid";
-        } else {
-          productImage.className = "form-control is-valid";
-        }
-      } else {
-        productImage.className = "form-control is-valid";
       }
 
       return newErrors;
@@ -89,23 +76,16 @@ class AddStock extends Component {
     if (Object.keys(newErrors).length > 0) {
       console.log(newErrors);
     } else {
-      this.setState({
-        productId: productId.value,
-        productName: productName.value,
-        productPrice: productPrice.value,
-        productQuantity: productQuantity.value,
-        productCategory: productCategory.value,
-        productImage: productImage.value,
-      });
-
       const apiData = {
-        id: productId.value,
-        name: productName.value,
-        price: productPrice.value,
-        quantity: productQuantity.value,
-        category: productCategory.value,
-        img: productImage.value,
+        id: this.state.productId,
+        name: this.state.productName,
+        price: this.state.productPrice,
+        quantity: this.state.productQuantity,
+        category: this.state.productCategory,
+        img: this.state.productImage,
       };
+
+      console.log(apiData);
 
       const apiSuccess = () => {
         const {
@@ -122,7 +102,7 @@ class AddStock extends Component {
           productPrice: "",
           productQuantity: "",
           productCategory: "",
-          productImage: "",
+          productImage: [],
           productImageData: "",
         });
 
@@ -135,7 +115,7 @@ class AddStock extends Component {
         this.props.onBtnClick(true);
       };
 
-      if (!productId.value || productId.value === "") {
+      if (!this.state.productId || this.state.productId === "") {
         axios
           .post("/stocks", { apiData })
           .then((res) => {
@@ -148,7 +128,7 @@ class AddStock extends Component {
           });
       } else {
         axios
-          .put("/stocks/" + productId.value, { apiData })
+          .put("/stocks/" + this.state.productId, { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -163,9 +143,15 @@ class AddStock extends Component {
 
   handleChange = (e) => {
     const inpName = e.target.name;
-    this.setState({
-      [inpName]: e.target.value,
-    });
+    if (inpName === "productImage") {
+      this.setState({
+        [inpName]: e.target.files,
+      });
+    } else {
+      this.setState({
+        [inpName]: e.target.value,
+      });
+    }
   };
 
   editStocksData = (id) => {
@@ -204,7 +190,6 @@ class AddStock extends Component {
                     <input
                       type="hidden"
                       name="productId"
-                      id="productId"
                       aria-describedby="idHelp"
                       className="form-control"
                       value={this.state.productId}
@@ -213,7 +198,6 @@ class AddStock extends Component {
                     <input
                       type="text"
                       name="productName"
-                      id="productName"
                       aria-describedby="nameHelp"
                       placeholder="Enter Product Name"
                       className="form-control"
@@ -227,7 +211,6 @@ class AddStock extends Component {
                     <input
                       type="text"
                       name="productPrice"
-                      id="productPrice"
                       aria-describedby="priceHelp"
                       placeholder="Enter Price"
                       className="form-control"
@@ -243,7 +226,6 @@ class AddStock extends Component {
                     <input
                       type="text"
                       name="productQuantity"
-                      id="productQuantity"
                       aria-describedby="quantityHelp"
                       placeholder="Enter Quantity"
                       className="form-control"
@@ -256,7 +238,6 @@ class AddStock extends Component {
                     <label className="form-label">Category</label>
                     <select
                       name="productCategory"
-                      id="productCategory"
                       aria-label="Category"
                       className="form-select"
                       value={this.state.productCategory}
@@ -280,11 +261,9 @@ class AddStock extends Component {
                     <input
                       type="file"
                       name="productImage"
-                      id="productImage"
                       aria-describedby="imageHelp"
                       placeholder="Upload Product Image"
                       className="form-control"
-                      value={this.state.productImage}
                       data-filevalue={this.state.productImageData}
                       onChange={this.handleChange}
                     />
