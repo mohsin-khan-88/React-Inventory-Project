@@ -33,24 +33,21 @@ class Stock extends Component {
   }
 
   getStockData = () => {
-    console.log("getStockData is called");
     this.setState({
       isLoading: true,
     });
     axios
       .get("/stocks?_page=" + this.state.page + "&_limit=10")
       .then((res) => {
-        console.log(res.data.length);
         if (res.data.length < 10) {
           this.setState({
             loadMore: false,
           });
         }
-        this.setState((prevState, loadMore) => ({
+        this.setState((prevState) => ({
           stocksData: [...prevState.stocksData, ...res.data],
           isLoading: false,
           page: prevState.page + 1,
-          loadMore: loadMore,
         }));
       })
       .catch(function (error) {
