@@ -22,6 +22,7 @@ class Stock extends Component {
       formBtnName: "Add Stock",
       isLoading: false,
       page: 1,
+      loadMore: true,
     };
 
     this.editRef = React.createRef();
@@ -37,14 +38,20 @@ class Stock extends Component {
       isLoading: true,
     });
     axios
-      .get("/stocks?_page=" + this.state.page + "&_limit=5")
+      .get("/stocks?_page=" + this.state.page + "&_limit=10")
       .then((res) => {
-        const stocksData = res.data;
-        console.log(stocksData.length);
-        this.setState({ 
-          stocksData: stocksData,
+        console.log(res.data.length);
+        if (res.data.length < 10) {
+          this.setState({
+            loadMore: false,
+          });
+        }
+        this.setState((prevState, loadMore) => ({
+          stocksData: [...prevState.stocksData, ...res.data],
           isLoading: false,
-         });
+          page: prevState.page + 1,
+          loadMore: loadMore,
+        }));
       })
       .catch(function (error) {
         console.log(error);
@@ -119,12 +126,9 @@ class Stock extends Component {
   };
 
   loadMore = () => {
-    console.log('loadmore');
-    this.setState({
-      page: this.state.page + 1,
-    });
+    console.log("loadmore");
     this.getStockData();
-  }
+  };
 
   render() {
     const thValues = [
@@ -194,18 +198,20 @@ class Stock extends Component {
           ref={this.editRef}
         />
         <Tables thValues={thValues} tdData={tdDat} />
-        <div className="container-fluid btnNav">
-          <div className="row">
-            <div className="col">
-              <button
-                onClick={this.loadMore}
-                className="btn btn-outline-dark d-block mt-3 mb-3 m-auto"
-              >
-                {this.state.isLoading ? "Loading..." : "Load More"}
-              </button>
+        {this.state.loadMore ? (
+          <div className="container-fluid btnNav">
+            <div className="row">
+              <div className="col">
+                <button
+                  onClick={this.loadMore}
+                  className="btn btn-outline-dark d-block mt-3 mb-3 m-auto"
+                >
+                  {this.state.isLoading ? "Loading..." : "Load More"}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
         {this.state.showToasts ? (
           <Toasts
             classesToAdd={this.state.classesToAdd}
