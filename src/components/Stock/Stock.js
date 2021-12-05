@@ -23,6 +23,7 @@ class Stock extends Component {
       isLoading: false,
       page: 1,
       loadMore: true,
+      search: false,
     };
 
     this.editRef = React.createRef();
@@ -34,21 +35,29 @@ class Stock extends Component {
 
   getStockData = () => {
     this.setState({
+      loadMore: true,
       isLoading: true,
     });
     axios
-      .get("/stocks?_page=" + this.state.page + "&_limit=10")
+      .get("/stocks?_page=" + this.state.page + "&_limit=5")
       .then((res) => {
-        if (res.data.length < 10) {
+        if (this.state.page >= 4) {
           this.setState({
             loadMore: false,
           });
         }
-        this.setState((prevState) => ({
-          stocksData: [...prevState.stocksData, ...res.data],
-          isLoading: false,
-          page: prevState.page + 1,
-        }));
+        if (this.state.search === true || this.state.page === 1) {
+          this.setState({
+            stocksData: res.data,
+            search: false,
+            isLoading: false,
+          });
+        } else {
+          this.setState((prevState) => ({
+            stocksData: [...prevState.stocksData, ...res.data],
+            isLoading: false,
+          }));
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -122,9 +131,33 @@ class Stock extends Component {
     }
   };
 
+  searchStock = (e) => {
+    this.setState({
+      loadMore: false,
+      search: true,
+    });
+    axios
+      .get("/stocks?q=" + e.target.search.value + "")
+      .then((res) => {
+        this.setState({
+          stocksData: res.data,
+          page: 1,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   loadMore = () => {
-    console.log("loadmore");
-    this.getStockData();
+    this.setState(
+      {
+        page: this.state.page + 1,
+      },
+      function () {
+        this.getStockData();
+      }
+    );
   };
 
   render() {
@@ -139,7 +172,6 @@ class Stock extends Component {
     ];
 
     let data = this.state.stocksData;
-    console.log(data);
     const tdDat = data.map((item) => (
       <tr key={item.id}>
         <th scope="row">{item.id}</th>
@@ -183,7 +215,7 @@ class Stock extends Component {
         </Container>
         <BtnNav
           btnName="Add Stock"
-          searchUrl="/stock"
+          search={this.searchStock}
           onBtnClick={this.openAddStock}
           showBtn={this.state.showBtn}
         />

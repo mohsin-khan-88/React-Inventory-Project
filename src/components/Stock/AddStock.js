@@ -85,8 +85,6 @@ class AddStock extends Component {
         img: this.state.productImage,
       };
 
-      console.log(apiData);
-
       const apiSuccess = () => {
         const {
           productName,
