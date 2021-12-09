@@ -23,7 +23,6 @@ class Stock extends Component {
       isLoading: false,
       page: 1,
       loadMore: true,
-      search: false,
     };
 
     this.editRef = React.createRef();
@@ -36,7 +35,6 @@ class Stock extends Component {
   getStockData = () => {
     this.setState({
       loadMore: true,
-      isLoading: true,
     });
     axios
       .get("/stocks?_page=" + this.state.page + "&_limit=5")
@@ -46,10 +44,9 @@ class Stock extends Component {
             loadMore: false,
           });
         }
-        if (this.state.search === true || this.state.page === 1) {
+        if (this.state.isLoading === false) {
           this.setState({
             stocksData: res.data,
-            search: false,
             isLoading: false,
           });
         } else {
@@ -74,15 +71,21 @@ class Stock extends Component {
   };
 
   closeAddStock = () => {
-    this.setState({
-      showResults: "d-none",
-      showBtn: true,
-      classesToAdd: "bg-success show",
-      showToasts: true,
-      editStock: false,
-      formBtnName: "Add Stock",
-    });
-    this.getStockData();
+    this.setState(
+      {
+        showResults: "d-none",
+        showBtn: true,
+        classesToAdd: "bg-success show",
+        showToasts: true,
+        editStock: false,
+        formBtnName: "Add Stock",
+        stocksData: [],
+        page: 1,
+      },
+      function () {
+        this.getStockData();
+      }
+    );
   };
 
   handleToasts = () => {
@@ -110,31 +113,36 @@ class Stock extends Component {
     }
   };
 
-  deleteStock = (id, e) => {
-    const itemName = this.state.stocksData[id - 1].name;
+  deleteStock = (id, name, e) => {
+    const itemName = name;
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Do you want to delete " + itemName)) {
       axios
         .delete("/stocks/" + id)
         .then((res) => {
           if (res.status == 200 || res.status === 201) {
-            this.setState({
-              classesToAdd: "bg-success show",
-              showToasts: true,
-            });
+            this.setState(
+              {
+                stocksData: [],
+                page: 1,
+                classesToAdd: "bg-success show",
+                showToasts: true,
+              },
+              function () {
+                this.getStockData();
+              }
+            );
           }
         })
         .catch(function (error) {
           console.log(error);
         });
-      this.getStockData();
     }
   };
 
   searchStock = (e) => {
     this.setState({
       loadMore: false,
-      search: true,
     });
     axios
       .get("/stocks?q=" + e.target.search.value + "")
@@ -153,6 +161,7 @@ class Stock extends Component {
     this.setState(
       {
         page: this.state.page + 1,
+        isLoading: true,
       },
       function () {
         this.getStockData();
@@ -194,7 +203,7 @@ class Stock extends Component {
           </button>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.deleteStock(item.id, e)}
+            onClick={(e) => this.deleteStock(item.id, item.name, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
           </button>

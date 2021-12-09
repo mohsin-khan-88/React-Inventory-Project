@@ -153,6 +153,7 @@ class AddStock extends Component {
   };
 
   editStocksData = (id) => {
+    window.scrollTo(0, 0);
     axios
       .get("/stocks/" + id)
       .then((res) => {
