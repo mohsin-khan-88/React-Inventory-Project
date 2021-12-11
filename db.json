@@ -24,7 +24,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
-      "category": "1",
+      "category": "3",
       "categoryName": " Category 3"
     },
     {
@@ -33,7 +33,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
-      "category": "2",
+      "category": "4",
       "categoryName": " Category 2"
     },
     {
@@ -42,7 +42,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
-      "category": "1",
+      "category": "5",
       "categoryName": " Category 1"
     },
     {
@@ -201,6 +201,100 @@
     {
       "id": 5,
       "catName": "Category 5"
+    }
+  ],
+  "platforms": [
+    {
+      "id": 1,
+      "platform": "Amazon"
+    },
+    {
+      "id": 2,
+      "platform": "Ali Express"
+    },
+    {
+      "id": 3,
+      "platform": "Wildberries"
+    },
+    {
+      "id": 4,
+      "platform": "Eldorado"
+    },
+    {
+      "id": 5,
+      "platform": "Ozon"
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "stockId": "1",
+      "stockName": "Michael Kors",
+      "price": "23500",
+      "quantity": "3",
+      "platformId": "1",
+      "platformName": "Amazon",
+      "timeStamp": "1639255110"
+    },
+    {
+      "id": 2,
+      "stockId": "1",
+      "stockName": "Michael Kors",
+      "price": "25500",
+      "quantity": "1",
+      "platformId": "1",
+      "platformName": "Amazon",
+      "timeStamp": "1639255110"
+    },
+    {
+      "id": 3,
+      "stockId": "1",
+      "stockName": "Michael Kors",
+      "price": "22000",
+      "quantity": "5",
+      "platformId": "1",
+      "platformName": "Amazon",
+      "timeStamp": "1639255110"
+    },
+    {
+      "id": 4,
+      "stockId": "1",
+      "stockName": "Michael Kors",
+      "price": "23500",
+      "quantity": "3",
+      "platformId": "2",
+      "platformName": "Ali Express",
+      "timeStamp": "1639255110"
+    },
+    {
+      "id": 5,
+      "stockId": "1",
+      "stockName": "Michael Kors",
+      "price": "25500",
+      "quantity": "1",
+      "platformId": "3",
+      "platformName": "Wildberries",
+      "timeStamp": "1639255110"
+    },
+    {
+      "id": 6,
+      "stockId": "1",
+      "stockName": "Michael Kors",
+      "price": "21500",
+      "quantity": "1",
+      "platformId": "4",
+      "platformName": "Eldorado",
+      "timeStamp": "1639255110"
+    },
+    {
+      "id": 7,
+      "stockId": "1",
+      "stockName": "Michael Kors",
+      "price": "26500",
+      "quantity": "2",
+      "platformId": "5",
+      "platformName": "Ozon",
+      "timeStamp": "1639255110"
     }
   ],
   "profile": {

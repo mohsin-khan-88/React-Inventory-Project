@@ -120,7 +120,7 @@ class Stock extends Component {
       axios
         .delete("/stocks/" + id)
         .then((res) => {
-          if (res.status == 200 || res.status === 201) {
+          if (res.status === 200 || res.status === 201) {
             this.setState(
               {
                 stocksData: [],
