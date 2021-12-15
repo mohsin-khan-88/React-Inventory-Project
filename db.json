@@ -297,28 +297,6 @@
       "date": "2021-12-14 05:04"
     }
   ],
-  "expense-categories": [
-    {
-      "id": 1,
-      "catName": "Category 1"
-    },
-    {
-      "id": 2,
-      "catName": "Category 2"
-    },
-    {
-      "id": 3,
-      "catName": "Category 3"
-    },
-    {
-      "id": 4,
-      "catName": "Category 4"
-    },
-    {
-      "id": 5,
-      "catName": "Category 5"
-    }
-  ],
   "expense": [
     {
       "id": 1,
