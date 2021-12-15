@@ -9,6 +9,7 @@ class AddSales extends Component {
       platforms: [],
       stockData: [],
       productId: "",
+      stockId: "",
       productName: "",
       productPrice: "",
       productQuantity: "",
@@ -78,10 +79,14 @@ class AddSales extends Component {
         productQuantity.className = "form-control is-valid";
       }
       if (!this.state.productPlatform || this.state.productPlatform === "") {
-        newErrors.productPlatform = "Product category cannot be blank!";
+        newErrors.productPlatform = "Product platform cannot be blank!";
         productPlatform.className = "form-control is-invalid";
       } else {
         productPlatform.className = "form-control is-valid";
+      }
+      if (!this.state.stockId || this.state.stockId === "") {
+        newErrors.stockId = "Stock Id cannot be blank!";
+        console.log("Stock Id cannot be blank!");
       }
 
       return newErrors;
@@ -94,6 +99,7 @@ class AddSales extends Component {
     } else {
       const apiData = {
         id: this.state.productId,
+        stockId: this.state.stockId,
         name: this.state.productName,
         price: this.state.productPrice,
         quantity: this.state.productQuantity,
@@ -106,6 +112,8 @@ class AddSales extends Component {
 
         // Clear form fields data and errors
         this.setState({
+          productId: "",
+          stockId: "",
           productName: "",
           productPrice: "",
           productQuantity: "",
@@ -149,7 +157,7 @@ class AddSales extends Component {
   handleChange = (e, newValue) => {
     if (newValue) {
       this.setState({
-        productId: newValue.id,
+        stockId: newValue.id,
         productName: newValue.name,
       });
     } else {
@@ -166,8 +174,10 @@ class AddSales extends Component {
       .get("/sales/" + id)
       .then((res) => {
         const editSalessData = res.data;
+        console.log(editSalessData);
         this.setState({
           productId: editSalessData.id,
+          stockId: editSalessData.stockId,
           productName: editSalessData.stockName,
           productPrice: editSalessData.price,
           productQuantity: editSalessData.quantity,
@@ -199,6 +209,14 @@ class AddSales extends Component {
                       aria-describedby="idHelp"
                       className="form-control"
                       value={this.state.productId}
+                      onChange={this.handleChange}
+                    />
+                    <input
+                      type="hidden"
+                      name="stockId"
+                      aria-describedby="idHelp"
+                      className="form-control"
+                      value={this.state.stockId}
                       onChange={this.handleChange}
                     />
                     <Ac

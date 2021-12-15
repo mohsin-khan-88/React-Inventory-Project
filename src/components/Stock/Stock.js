@@ -171,7 +171,7 @@ class Stock extends Component {
 
   render() {
     const thValues = [
-      "#",
+      "Sku",
       "Image",
       "Name",
       "Price",

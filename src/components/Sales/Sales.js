@@ -176,6 +176,7 @@ class Sales extends Component {
       "Price",
       "Quantity",
       "Platform",
+      "Added",
       "Action",
     ];
 
@@ -187,6 +188,7 @@ class Sales extends Component {
         <td>${item.price}</td>
         <td>{item.quantity}</td>
         <td>{item.platformName}</td>
+        <td>{item.date}</td>
         <td>
           <button
             className="border-0 bg-transparent"

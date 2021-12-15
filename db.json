@@ -234,7 +234,7 @@
       "quantity": "3",
       "platformId": "1",
       "platformName": "Amazon",
-      "timeStamp": "2021-12-14 05:04"
+      "date": "2021-12-14 05:04"
     },
     {
       "id": 2,
@@ -244,7 +244,7 @@
       "quantity": "1",
       "platformId": "1",
       "platformName": "Amazon",
-      "timeStamp": "2021-12-14 05:04"
+      "date": "2021-12-14 05:04"
     },
     {
       "id": 3,
@@ -254,7 +254,7 @@
       "quantity": "5",
       "platformId": "1",
       "platformName": "Amazon",
-      "timeStamp": "2021-12-14 05:04"
+      "date": "2021-12-14 05:04"
     },
     {
       "id": 4,
@@ -264,7 +264,7 @@
       "quantity": "3",
       "platformId": "2",
       "platformName": "Ali Express",
-      "timeStamp": "2021-12-14 05:04"
+      "date": "2021-12-14 05:04"
     },
     {
       "id": 5,
@@ -274,7 +274,7 @@
       "quantity": "1",
       "platformId": "3",
       "platformName": "Wildberries",
-      "timeStamp": "2021-12-14 05:04"
+      "date": "2021-12-14 05:04"
     },
     {
       "id": 6,
@@ -284,7 +284,7 @@
       "quantity": "1",
       "platformId": "4",
       "platformName": "Eldorado",
-      "timeStamp": "2021-12-14 05:04"
+      "date": "2021-12-14 05:04"
     },
     {
       "id": 7,
@@ -294,7 +294,7 @@
       "quantity": "2",
       "platformId": "5",
       "platformName": "Ozon",
-      "timeStamp": "2021-12-14 05:04"
+      "date": "2021-12-14 05:04"
     }
   ],
   "profile": {
