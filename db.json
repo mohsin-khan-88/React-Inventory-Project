@@ -303,6 +303,8 @@
       "title": "Rent",
       "price": "45000",
       "quantity": "1",
+      "category": "1",
+      "categoryName": " Category 1",
       "description": "Test Description",
       "date": "15/12/2021 05:16 pm"
     },
@@ -311,6 +313,8 @@
       "title": "Salary",
       "price": "15000",
       "quantity": "1",
+      "category": "2",
+      "categoryName": " Category 2",
       "description": "Test Description",
       "date": "15/12/2021 05:16 pm"
     },
@@ -319,6 +323,8 @@
       "title": "Rent",
       "price": "45000",
       "quantity": "1",
+      "category": "3",
+      "categoryName": " Category 3",
       "description": "Test Description",
       "date": "15/12/2021 05:16 pm"
     },
@@ -327,7 +333,9 @@
       "title": "Salary",
       "price": "15000",
       "quantity": "1",
-      "description": "Test Description",
+      "category": "4",
+      "categoryName": " Category 4",
+      "description": "Test Description 4",
       "date": "15/12/2021 05:16 pm"
     },
     {
@@ -335,7 +343,9 @@
       "title": "Rent",
       "price": "45000",
       "quantity": "1",
-      "description": "Test Description",
+      "category": "5",
+      "categoryName": " Category 5",
+      "description": "Test Description 5",
       "date": "15/12/2021 05:16 pm"
     },
     {
@@ -343,7 +353,9 @@
       "title": "Salary",
       "price": "15000",
       "quantity": "1",
-      "description": "Test Description",
+      "category": "1",
+      "categoryName": " Category 1",
+      "description": "Test Description 6",
       "date": "15/12/2021 05:16 pm"
     },
     {
@@ -351,7 +363,9 @@
       "title": "Electricity Bill",
       "price": "5000",
       "quantity": "1",
-      "description": "Test Description",
+      "category": "3",
+      "categoryName": " Category 3",
+      "description": "Test Description 7",
       "date": "15/12/2021 05:16 pm"
     }
   ]
