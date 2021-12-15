@@ -234,7 +234,7 @@
       "quantity": "3",
       "platformId": "1",
       "platformName": "Amazon",
-      "date": "2021-12-14 05:04"
+      "date": "15/12/2021 05:16 pm"
     },
     {
       "id": 2,
@@ -244,7 +244,7 @@
       "quantity": "1",
       "platformId": "1",
       "platformName": "Amazon",
-      "date": "2021-12-14 05:04"
+      "date": "15/12/2021 05:16 pm"
     },
     {
       "id": 3,
@@ -254,7 +254,7 @@
       "quantity": "5",
       "platformId": "1",
       "platformName": "Amazon",
-      "date": "2021-12-14 05:04"
+      "date": "15/12/2021 05:16 pm"
     },
     {
       "id": 4,
@@ -264,7 +264,7 @@
       "quantity": "3",
       "platformId": "2",
       "platformName": "Ali Express",
-      "date": "2021-12-14 05:04"
+      "date": "15/12/2021 05:16 pm"
     },
     {
       "id": 5,
@@ -274,7 +274,7 @@
       "quantity": "1",
       "platformId": "3",
       "platformName": "Wildberries",
-      "date": "2021-12-14 05:04"
+      "date": "15/12/2021 05:16 pm"
     },
     {
       "id": 6,
@@ -284,7 +284,7 @@
       "quantity": "1",
       "platformId": "4",
       "platformName": "Eldorado",
-      "date": "2021-12-14 05:04"
+      "date": "15/12/2021 05:16 pm"
     },
     {
       "id": 7,
@@ -295,6 +295,86 @@
       "platformId": "5",
       "platformName": "Ozon",
       "date": "2021-12-14 05:04"
+    }
+  ],
+  "expense-categories": [
+    {
+      "id": 1,
+      "catName": "Category 1"
+    },
+    {
+      "id": 2,
+      "catName": "Category 2"
+    },
+    {
+      "id": 3,
+      "catName": "Category 3"
+    },
+    {
+      "id": 4,
+      "catName": "Category 4"
+    },
+    {
+      "id": 5,
+      "catName": "Category 5"
+    }
+  ],
+  "expense": [
+    {
+      "id": 1,
+      "title": "Rent",
+      "price": "45000",
+      "quantity": "1",
+      "description": "Test Description",
+      "date": "15/12/2021 05:16 pm"
+    },
+    {
+      "id": 2,
+      "title": "Salary",
+      "price": "15000",
+      "quantity": "1",
+      "description": "Test Description",
+      "date": "15/12/2021 05:16 pm"
+    },
+    {
+      "id": 3,
+      "title": "Rent",
+      "price": "45000",
+      "quantity": "1",
+      "description": "Test Description",
+      "date": "15/12/2021 05:16 pm"
+    },
+    {
+      "id": 4,
+      "title": "Salary",
+      "price": "15000",
+      "quantity": "1",
+      "description": "Test Description",
+      "date": "15/12/2021 05:16 pm"
+    },
+    {
+      "id": 5,
+      "title": "Rent",
+      "price": "45000",
+      "quantity": "1",
+      "description": "Test Description",
+      "date": "15/12/2021 05:16 pm"
+    },
+    {
+      "id": 6,
+      "title": "Salary",
+      "price": "15000",
+      "quantity": "1",
+      "description": "Test Description",
+      "date": "15/12/2021 05:16 pm"
+    },
+    {
+      "id": 7,
+      "title": "Electricity Bill",
+      "price": "5000",
+      "quantity": "1",
+      "description": "Test Description",
+      "date": "15/12/2021 05:16 pm"
     }
   ],
   "profile": {

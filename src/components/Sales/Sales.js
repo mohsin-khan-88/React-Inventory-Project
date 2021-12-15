@@ -176,7 +176,7 @@ class Sales extends Component {
       "Price",
       "Quantity",
       "Platform",
-      "Added",
+      "Date",
       "Action",
     ];
 
