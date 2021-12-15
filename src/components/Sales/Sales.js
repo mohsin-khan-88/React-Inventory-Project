@@ -37,9 +37,9 @@ class Sales extends Component {
       loadMore: true,
     });
     axios
-      .get("/stocks?_page=" + this.state.page + "&_limit=5")
+      .get("/sales?_page=" + this.state.page + "&_limit=5")
       .then((res) => {
-        if (this.state.page >= 4) {
+        if (this.state.page >= 2) {
           this.setState({
             loadMore: false,
           });
@@ -118,7 +118,7 @@ class Sales extends Component {
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Do you want to delete " + itemName)) {
       axios
-        .delete("/stocks/" + id)
+        .delete("/sales/" + id)
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             this.setState(
@@ -145,7 +145,7 @@ class Sales extends Component {
       loadMore: false,
     });
     axios
-      .get("/stocks?q=" + e.target.search.value + "")
+      .get("/sales?q=" + e.target.search.value + "")
       .then((res) => {
         this.setState({
           salesData: res.data,
@@ -171,29 +171,22 @@ class Sales extends Component {
 
   render() {
     const thValues = [
-      "#",
-      "Image",
+      "Sku",
       "Name",
       "Price",
       "Quantity",
-      "Category",
+      "Platform",
       "Action",
     ];
 
     let data = this.state.salesData;
     const tdDat = data.map((item) => (
       <tr key={item.id}>
-        <th scope="row">{item.id}</th>
-        <td>
-          <img
-            src={item.img ? item.img : "https://via.placeholder.com/50"}
-            alt="img"
-          />
-        </td>
-        <td>{item.name}</td>
+        <th scope="row">{item.stockId}</th>
+        <td>{item.stockName}</td>
         <td>${item.price}</td>
         <td>{item.quantity}</td>
-        <td>{item.categoryName}</td>
+        <td>{item.platformName}</td>
         <td>
           <button
             className="border-0 bg-transparent"

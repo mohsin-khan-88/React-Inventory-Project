@@ -1,0 +1,12 @@
+.MuiInputLabel-root {
+    display: none !important;
+}
+
+fieldset {
+  display:none !important;
+}
+
+.MuiAutocomplete-root .MuiOutlinedInput-root.MuiInputBase-sizeSmall {
+    padding: 3px !important;
+    border: 1px solid #CCC !important;
+}

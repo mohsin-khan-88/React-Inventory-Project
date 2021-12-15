@@ -1,43 +1,59 @@
 import React, { Component } from "react";
 import axios from "../../utils/Api";
+import Ac from "./Ac";
 
 class AddSales extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stockCats: [],
+      platforms: [],
+      stockData: [],
       productId: "",
       productName: "",
       productPrice: "",
       productQuantity: "",
-      productCategory: "",
-      productImage: [],
-      productImageName: "",
+      productPlatform: "",
     };
   }
 
   componentDidMount() {
+    this.getPlatforms();
+    this.getStockData();
+  }
+
+  getPlatforms = () => {
     axios
-      .get("/stock-categories")
+      .get("/platforms")
       .then((res) => {
-        const stockCats = res.data;
-        this.setState({ stockCats });
+        const platforms = res.data;
+        this.setState({ platforms });
       })
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
+
+  getStockData = () => {
+    axios
+      .get("/stocks")
+      .then((res) => {
+        this.setState({
+          stockData: res.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   AddSales = (e) => {
     e.preventDefault();
-
     const {
       productId,
       productName,
       productPrice,
       productQuantity,
-      productCategory,
-      productImage,
+      productPlatform,
     } = e.target.elements;
 
     const findFormErrors = () => {
@@ -61,11 +77,11 @@ class AddSales extends Component {
       } else {
         productQuantity.className = "form-control is-valid";
       }
-      if (!this.state.productCategory || this.state.productCategory === "") {
-        newErrors.productCategory = "Product category cannot be blank!";
-        productCategory.className = "form-control is-invalid";
+      if (!this.state.productPlatform || this.state.productPlatform === "") {
+        newErrors.productPlatform = "Product category cannot be blank!";
+        productPlatform.className = "form-control is-invalid";
       } else {
-        productCategory.className = "form-control is-valid";
+        productPlatform.className = "form-control is-valid";
       }
 
       return newErrors;
@@ -81,41 +97,32 @@ class AddSales extends Component {
         name: this.state.productName,
         price: this.state.productPrice,
         quantity: this.state.productQuantity,
-        category: this.state.productCategory,
-        img: this.state.productImage,
+        platform: this.state.productPlatform,
       };
 
       const apiSuccess = () => {
-        const {
-          productName,
-          productPrice,
-          productQuantity,
-          productCategory,
-          productImage,
-        } = e.target.elements;
+        const { productName, productPrice, productQuantity, productPlatform } =
+          e.target.elements;
 
         // Clear form fields data and errors
         this.setState({
           productName: "",
           productPrice: "",
           productQuantity: "",
-          productCategory: "",
-          productImage: [],
-          productImageData: "",
+          productPlatform: "",
         });
 
         productName.className = "form-control";
         productPrice.className = "form-control";
         productQuantity.className = "form-control";
-        productCategory.className = "form-control";
-        productImage.className = "form-control";
+        productPlatform.className = "form-control";
 
         this.props.onBtnClick(true);
       };
 
       if (!this.state.productId || this.state.productId === "") {
         axios
-          .post("/stocks", { apiData })
+          .post("/sales", { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -126,7 +133,7 @@ class AddSales extends Component {
           });
       } else {
         axios
-          .put("/stocks/" + this.state.productId, { apiData })
+          .put("/sales/" + this.state.productId, { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -139,13 +146,14 @@ class AddSales extends Component {
     }
   };
 
-  handleChange = (e) => {
-    const inpName = e.target.name;
-    if (inpName === "productImage") {
+  handleChange = (e, newValue) => {
+    if (newValue) {
       this.setState({
-        [inpName]: e.target.files,
+        productId: newValue.id,
+        productName: newValue.name,
       });
     } else {
+      const inpName = e.target.name;
       this.setState({
         [inpName]: e.target.value,
       });
@@ -155,16 +163,15 @@ class AddSales extends Component {
   editSalesData = (id) => {
     window.scrollTo(0, 0);
     axios
-      .get("/stocks/" + id)
+      .get("/sales/" + id)
       .then((res) => {
         const editSalessData = res.data;
         this.setState({
           productId: editSalessData.id,
-          productName: editSalessData.name,
+          productName: editSalessData.stockName,
           productPrice: editSalessData.price,
           productQuantity: editSalessData.quantity,
-          productCategory: editSalessData.category,
-          productImageData: editSalessData.img,
+          productPlatform: editSalessData.platformId,
         });
       })
       .catch(function (error) {
@@ -194,14 +201,11 @@ class AddSales extends Component {
                       value={this.state.productId}
                       onChange={this.handleChange}
                     />
-                    <input
-                      type="text"
-                      name="productName"
-                      aria-describedby="nameHelp"
-                      placeholder="Enter Product Name"
-                      className="form-control"
-                      value={this.state.productName}
-                      onChange={this.handleChange}
+                    <Ac
+                      stockData={this.state.stockData}
+                      pId={this.state.productId}
+                      pValue={this.state.productName}
+                      hc={this.handleChange}
                     />
                     <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
@@ -234,47 +238,23 @@ class AddSales extends Component {
                     <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
                   <div className="col mb-2">
-                    <label className="form-label">Category</label>
+                    <label className="form-label">Platform</label>
                     <select
-                      name="productCategory"
-                      aria-label="Category"
+                      name="productPlatform"
+                      aria-label="Platform"
                       className="form-select"
-                      value={this.state.productCategory}
+                      value={this.state.productPlatform}
                       onChange={this.handleChange}
                     >
-                      <option value="">Select Category</option>
-                      {this.state.stockCats.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.catName}
+                      <option value="">Select Platform</option>
+                      {this.state.platforms.map((platform) => (
+                        <option key={platform.id} value={platform.id}>
+                          {platform.platform}
                         </option>
                       ))}
                     </select>
                     <div className="invalid-feedback">
-                      Please select Category!
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col mb-2">
-                    <label className="form-label">Product Image</label>
-                    <input
-                      type="file"
-                      name="productImage"
-                      aria-describedby="imageHelp"
-                      placeholder="Upload Product Image"
-                      className="form-control"
-                      data-filevalue={this.state.productImageData}
-                      onChange={this.handleChange}
-                    />
-
-                    {this.props.editStock ? (
-                      <div id="fileHelp" className="form-text">
-                        Selected file: {this.state.productImageData}
-                      </div>
-                    ) : null}
-
-                    <div className="invalid-feedback">
-                      Please select product image!
+                      Please select Platform!
                     </div>
                   </div>
                 </div>
