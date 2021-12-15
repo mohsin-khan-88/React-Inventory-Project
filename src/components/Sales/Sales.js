@@ -198,7 +198,7 @@ class Sales extends Component {
           </button>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.deleteSales(item.id, item.name, e)}
+            onClick={(e) => this.deleteSales(item.id, item.stockName, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
           </button>
