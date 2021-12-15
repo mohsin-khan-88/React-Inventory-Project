@@ -5,21 +5,22 @@ class AddExpense extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ExpenseCats: [],
+      expenseCats: [],
       expenseId: "",
       expenseTitle: "",
       expensePrice: "",
       expenseQuantity: "",
       expenseCategory: "",
+      expenseDescription: "",
     };
   }
 
   componentDidMount() {
     axios
-      .get("/Expense-categories")
+      .get("/stock-categories")
       .then((res) => {
-        const ExpenseCats = res.data;
-        this.setState({ ExpenseCats });
+        const expenseCats = res.data;
+        this.setState({ expenseCats });
       })
       .catch(function (error) {
         console.log(error);
@@ -35,13 +36,14 @@ class AddExpense extends Component {
       expensePrice,
       expenseQuantity,
       expenseCategory,
+      expenseDescription,
     } = e.target.elements;
 
     const findFormErrors = () => {
       const newErrors = {};
 
       if (!this.state.expenseTitle || this.state.expenseTitle === "") {
-        newErrors.expenseTitle = "expense Name cannot be blank!";
+        newErrors.expenseTitle = "expense title cannot be blank!";
         expenseTitle.className = "form-control is-invalid";
       } else {
         expenseTitle.className = "form-control is-valid";
@@ -79,15 +81,12 @@ class AddExpense extends Component {
         price: this.state.expensePrice,
         quantity: this.state.expenseQuantity,
         category: this.state.expenseCategory,
+        description: this.state.expenseDescription,
       };
 
       const apiSuccess = () => {
-        const {
-          expenseTitle,
-          expensePrice,
-          expenseQuantity,
-          expenseCategory,
-        } = e.target.elements;
+        const { expenseTitle, expensePrice, expenseQuantity, expenseCategory } =
+          e.target.elements;
 
         // Clear form fields data and errors
         this.setState({
@@ -95,6 +94,7 @@ class AddExpense extends Component {
           expensePrice: "",
           expenseQuantity: "",
           expenseCategory: "",
+          expenseDescription: "",
         });
 
         expenseTitle.className = "form-control";
@@ -107,7 +107,7 @@ class AddExpense extends Component {
 
       if (!this.state.expenseId || this.state.expenseId === "") {
         axios
-          .post("/Expenses", { apiData })
+          .post("/expense", { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -118,7 +118,7 @@ class AddExpense extends Component {
           });
       } else {
         axios
-          .put("/Expenses/" + this.state.expenseId, { apiData })
+          .put("/expense/" + this.state.expenseId, { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -140,18 +140,19 @@ class AddExpense extends Component {
     }
   };
 
-  editExpensesData = (id) => {
+  editExpenseData = (id) => {
     window.scrollTo(0, 0);
     axios
-      .get("/Expenses/" + id)
+      .get("/expense/" + id)
       .then((res) => {
-        const editExpensesData = res.data;
+        const editExpenseData = res.data;
         this.setState({
-          expenseId: editExpensesData.id,
-          expenseTitle: editExpensesData.name,
-          expensePrice: editExpensesData.price,
-          expenseQuantity: editExpensesData.quantity,
-          expenseCategory: editExpensesData.category,
+          expenseId: editExpenseData.id,
+          expenseTitle: editExpenseData.title,
+          expensePrice: editExpenseData.price,
+          expenseQuantity: editExpenseData.quantity,
+          expenseCategory: editExpenseData.category,
+          expenseDescription: editExpenseData.description,
         });
       })
       .catch(function (error) {
@@ -185,7 +186,7 @@ class AddExpense extends Component {
                       type="text"
                       name="expenseTitle"
                       aria-describedby="nameHelp"
-                      placeholder="Enter expense Name"
+                      placeholder="Enter Title"
                       className="form-control"
                       value={this.state.expenseTitle}
                       onChange={this.handleChange}
@@ -230,7 +231,7 @@ class AddExpense extends Component {
                       onChange={this.handleChange}
                     >
                       <option value="">Select Category</option>
-                      {this.state.ExpenseCats.map((category) => (
+                      {this.state.expenseCats.map((category) => (
                         <option key={category.id} value={category.id}>
                           {category.catName}
                         </option>
@@ -238,6 +239,19 @@ class AddExpense extends Component {
                     </select>
                     <div className="invalid-feedback">
                       Please select Category!
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col mb-2">
+                    <label className="form-label">Description</label>
+                    <textarea
+                      name="expenseDescription"
+                      className="form-control"
+                      value={this.state.expenseDescription}
+                    ></textarea>
+                    <div className="invalid-feedback">
+                      Description can not be blank!
                     </div>
                   </div>
                 </div>

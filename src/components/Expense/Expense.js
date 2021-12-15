@@ -107,14 +107,14 @@ class Expense extends Component {
     });
 
     if (this.editRef.current !== null) {
-      this.editRef.current.editexpenseData(id);
+      this.editRef.current.editExpenseData(id);
     } else {
       console.log(this.editRef);
     }
   };
 
-  deleteExpense = (id, name, e) => {
-    const itemName = name;
+  deleteExpense = (id, title, e) => {
+    const itemName = title;
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Do you want to delete " + itemName)) {
       axios
@@ -170,14 +170,7 @@ class Expense extends Component {
   };
 
   render() {
-    const thValues = [
-      "#",
-      "title",
-      "Price",
-      "Quantity",
-      "Category",
-      "Action",
-    ];
+    const thValues = ["#", "title", "Price", "Quantity", "Category", "description", "Action"];
 
     let data = this.state.expenseData;
     const tdDat = data.map((item) => (
@@ -187,6 +180,7 @@ class Expense extends Component {
         <td>${item.price}</td>
         <td>{item.quantity}</td>
         <td>{item.categoryName}</td>
+        <td>{item.description}</td>
         <td>
           <button
             className="border-0 bg-transparent"
@@ -196,7 +190,7 @@ class Expense extends Component {
           </button>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.deleteExpense(item.id, item.name, e)}
+            onClick={(e) => this.deleteExpense(item.id, item.title, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
           </button>
@@ -209,7 +203,7 @@ class Expense extends Component {
         <Container fluid>
           <Row>
             <Col>
-              <div className="Expense">
+              <div className="expense">
                 <h1 className="text- text-uppercase my-3">Expense</h1>
               </div>
             </Col>
