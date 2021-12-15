@@ -249,6 +249,7 @@ class AddExpense extends Component {
                       name="expenseDescription"
                       className="form-control"
                       value={this.state.expenseDescription}
+                      onChange={this.handleChange}
                     ></textarea>
                     <div className="invalid-feedback">
                       Description can not be blank!
