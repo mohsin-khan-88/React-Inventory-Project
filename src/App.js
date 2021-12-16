@@ -10,6 +10,7 @@ import Stock from "./components/Stock/Stock";
 import Sales from "./components/Sales/Sales";
 import Reports from "./components/Reports/Reports";
 import Expense from "./components/Expense/Expense";
+import Categories from "./components/Categories/Categories";
 
 function App() {
   return (
@@ -23,8 +24,9 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/stock" element={<Stock />} />
                 <Route path="/sales" element={<Sales />} />
-                <Route path="/reports" element={<Reports />} />
                 <Route path="/expense" element={<Expense />} />
+                <Route path="/reports" element={<Reports />} />
+                <Route path="/categories" element={<Categories />} />
               </Routes>
             </div>
           </div>

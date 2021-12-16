@@ -1,25 +1,25 @@
 import React, { Component } from "react";
-import "./Expense.css";
+import "./Categories.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import BtnNav from "../BtnNav/BtnNav";
 import Tables from "../Tables/Tables";
-import AddExpense from "./AddExpense";
+import AddCategories from "./AddCategories";
 import { Container, Row, Col } from "react-bootstrap";
 import Toasts from "../Toasts/Toasts";
 import axios from "../../utils/Api";
 
-class Expense extends Component {
+class Categories extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expenseData: [],
+      categoriesData: [],
       showResults: "d-none",
       showBtn: true,
       classesToAdd: "",
       showToasts: false,
-      editExpense: false,
-      formBtnName: "Add Expense",
+      editCategories: false,
+      formBtnName: "Add Category",
       isLoading: false,
       page: 1,
       loadMore: true,
@@ -28,16 +28,17 @@ class Expense extends Component {
     this.editRef = React.createRef();
   }
 
+
   componentDidMount() {
-    this.getExpenseData();
+    this.getCategoriesData();
   }
 
-  getExpenseData = () => {
+  getCategoriesData = () => {
     this.setState({
       loadMore: true,
     });
     axios
-      .get("/expense?_page=" + this.state.page + "&_limit=5")
+      .get("/stock-categories?_page=" + this.state.page + "&_limit=5")
       .then((res) => {
         if (this.state.page >= 2) {
           this.setState({
@@ -46,12 +47,12 @@ class Expense extends Component {
         }
         if (this.state.isLoading === false) {
           this.setState({
-            expenseData: res.data,
+            categoriesData: res.data,
             isLoading: false,
           });
         } else {
           this.setState((prevState) => ({
-            expenseData: [...prevState.expenseData, ...res.data],
+            categoriesData: [...prevState.categoriesData, ...res.data],
             isLoading: false,
           }));
         }
@@ -61,7 +62,7 @@ class Expense extends Component {
       });
   };
 
-  openAddExpense = () => {
+  openAddCategories = () => {
     this.setState({
       showResults: "d-block",
       showBtn: false,
@@ -70,20 +71,20 @@ class Expense extends Component {
     });
   };
 
-  closeAddExpense = () => {
+  closeAddCategories = () => {
     this.setState(
       {
         showResults: "d-none",
         showBtn: true,
         classesToAdd: "bg-success show",
         showToasts: true,
-        editExpense: false,
-        formBtnName: "Add Expense",
-        expenseData: [],
+        editCategories: false,
+        formBtnName: "Add Categories",
+        categoriesData: [],
         page: 1,
       },
       function () {
-        this.getExpenseData();
+        this.getCategoriesData();
       }
     );
   };
@@ -95,41 +96,41 @@ class Expense extends Component {
     });
   };
 
-  editExpense = (id, e) => {
+  editCategories = (id, e) => {
     this.setState({
       classesToAdd: "",
       showToasts: false,
-      editexpenseId: id,
+      editcategoriesId: id,
       showResults: "d-block",
       showBtn: false,
-      editExpense: true,
-      formBtnName: "Update Expense",
+      editCategories: true,
+      formBtnName: "Update Categories",
     });
 
     if (this.editRef.current !== null) {
-      this.editRef.current.editExpenseData(id);
+      this.editRef.current.editCategoriesData(id);
     } else {
       console.log(this.editRef);
     }
   };
 
-  deleteExpense = (id, title, e) => {
+  deleteCategories = (id, title, e) => {
     const itemName = title;
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Do you want to delete " + itemName)) {
       axios
-        .delete("/expense/" + id)
+        .delete("/stock-categories/" + id)
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             this.setState(
               {
-                expenseData: [],
+                categoriesData: [],
                 page: 1,
                 classesToAdd: "bg-success show",
                 showToasts: true,
               },
               function () {
-                this.getExpenseData();
+                this.getCategoriesData();
               }
             );
           }
@@ -140,15 +141,15 @@ class Expense extends Component {
     }
   };
 
-  searchExpense = (e) => {
+  searchCategories = (e) => {
     this.setState({
       loadMore: false,
     });
     axios
-      .get("/expense?q=" + e.target.search.value + "")
+      .get("/stock-categories?q=" + e.target.search.value + "")
       .then((res) => {
         this.setState({
-          expenseData: res.data,
+          categoriesData: res.data,
           page: 1,
         });
       })
@@ -164,7 +165,7 @@ class Expense extends Component {
         isLoading: true,
       },
       function () {
-        this.getExpenseData();
+        this.getCategoriesData();
       }
     );
   };
@@ -172,33 +173,27 @@ class Expense extends Component {
   render() {
     const thValues = [
       "#",
-      "title",
-      "Price",
-      "Quantity",
-      "Category",
-      "description",
+      "Name",
+      "Type",
       "Action",
     ];
 
-    let data = this.state.expenseData;
+    let data = this.state.categoriesData;
     const tdDat = data.map((item) => (
       <tr key={item.id}>
         <th scope="row">{item.id}</th>
-        <td>{item.title}</td>
-        <td>${item.price}</td>
-        <td>{item.quantity}</td>
-        <td>{item.categoryName}</td>
-        <td>{item.description}</td>
+        <td>{item.catName}</td>
+        <td>{item.type}</td>
         <td>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.editExpense(item.id, e)}
+            onClick={(e) => this.editCategories(item.id, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faEdit} />
           </button>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.deleteExpense(item.id, item.title, e)}
+            onClick={(e) => this.deleteCategories(item.id, item.title, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
           </button>
@@ -211,22 +206,22 @@ class Expense extends Component {
         <Container fluid>
           <Row>
             <Col>
-              <div className="expense">
-                <h1 className="text- text-uppercase my-3">Expense</h1>
+              <div className="Categories">
+                <h1 className="text- text-uppercase my-3">Categories</h1>
               </div>
             </Col>
           </Row>
         </Container>
         <BtnNav
-          btnName="Add Expense"
-          search={this.searchExpense}
-          onBtnClick={this.openAddExpense}
+          btnName="Add Categories"
+          search={this.searchCategories}
+          onBtnClick={this.openAddCategories}
           showBtn={this.state.showBtn}
         />
-        <AddExpense
+        <AddCategories
           showResults={this.state.showResults}
-          onBtnClick={this.closeAddExpense}
-          editExpense={this.state.editExpense}
+          onBtnClick={this.closeAddCategories}
+          editCategories={this.state.editCategories}
           btnName={this.state.formBtnName}
           ref={this.editRef}
         />
@@ -257,4 +252,4 @@ class Expense extends Component {
   }
 }
 
-export default Expense;
+export default Categories;

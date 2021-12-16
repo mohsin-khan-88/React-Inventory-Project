@@ -8,6 +8,7 @@ import {
   faChartBar,
   faChartPie,
   faHandHoldingUsd,
+  faList,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Sidebar() {
@@ -52,6 +53,14 @@ function Sidebar() {
               to="/reports"
             >
               <FontAwesomeIcon icon={faChartPie} /> Reports
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link text-uppercase mt-1 mb-1"
+              to="/categories"
+            >
+              <FontAwesomeIcon icon={faList} /> Categories
             </NavLink>
           </li>
         </ul>

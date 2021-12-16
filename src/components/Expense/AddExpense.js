@@ -43,25 +43,25 @@ class AddExpense extends Component {
       const newErrors = {};
 
       if (!this.state.expenseTitle || this.state.expenseTitle === "") {
-        newErrors.expenseTitle = "expense title cannot be blank!";
+        newErrors.expenseTitle = "Expense title cannot be blank!";
         expenseTitle.className = "form-control is-invalid";
       } else {
         expenseTitle.className = "form-control is-valid";
       }
       if (!this.state.expensePrice || this.state.expensePrice === "") {
-        newErrors.expensePrice = "expense price cannot be blank!";
+        newErrors.expensePrice = "Expense price cannot be blank!";
         expensePrice.className = "form-control is-invalid";
       } else {
         expensePrice.className = "form-control is-valid";
       }
       if (!this.state.expenseQuantity || this.state.expenseQuantity === "") {
-        newErrors.expenseQuantity = "expense quantity cannot be blank!";
+        newErrors.expenseQuantity = "Expense quantity cannot be blank!";
         expenseQuantity.className = "form-control is-invalid";
       } else {
         expenseQuantity.className = "form-control is-valid";
       }
       if (!this.state.expenseCategory || this.state.expenseCategory === "") {
-        newErrors.expenseCategory = "expense category cannot be blank!";
+        newErrors.expenseCategory = "Expense category cannot be blank!";
         expenseCategory.className = "form-control is-invalid";
       } else {
         expenseCategory.className = "form-control is-valid";

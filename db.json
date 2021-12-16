@@ -184,23 +184,63 @@
   "stock-categories": [
     {
       "id": 1,
-      "catName": "Category 1"
+      "catName": "Category 1",
+      "type": "stocks",
+      "typeId": 1
     },
     {
       "id": 2,
-      "catName": "Category 2"
+      "catName": "Category 2",
+      "type": "stocks",
+      "typeId": 1
     },
     {
       "id": 3,
-      "catName": "Category 3"
+      "catName": "Category 3",
+      "type": "stocks",
+      "typeId": 1
     },
     {
       "id": 4,
-      "catName": "Category 4"
+      "catName": "Category 4",
+      "type": "stocks",
+      "typeId": 1
     },
     {
       "id": 5,
-      "catName": "Category 5"
+      "catName": "Category 5",
+      "type": "stocks",
+      "typeId": 1
+    },
+    {
+      "id": 6,
+      "catName": "Category 1",
+      "type": "expense",
+      "typeId": 1
+    },
+    {
+      "id": 7,
+      "catName": "Category 2",
+      "type": "expense",
+      "typeId": 2
+    },
+    {
+      "id": 8,
+      "catName": "Category 3",
+      "type": "expense",
+      "typeId": 2
+    },
+    {
+      "id": 9,
+      "catName": "Category 4",
+      "type": "expense",
+      "typeId": 2
+    },
+    {
+      "id": 8,
+      "catName": "Category 5",
+      "type": "expense",
+      "typeId": 2
     }
   ],
   "platforms": [
