@@ -104,7 +104,7 @@ class Categories extends Component {
       showResults: "d-block",
       showBtn: false,
       editCategories: true,
-      formBtnName: "Update Categories",
+      formBtnName: "Update Category",
     });
 
     if (this.editRef.current !== null) {

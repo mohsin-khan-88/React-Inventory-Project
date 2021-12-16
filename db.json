@@ -237,7 +237,7 @@
       "typeId": 2
     },
     {
-      "id": 8,
+      "id": 10,
       "catName": "Category 5",
       "type": "expense",
       "typeId": 2
@@ -334,7 +334,7 @@
       "quantity": "2",
       "platformId": "5",
       "platformName": "Ozon",
-      "date": "2021-12-14 05:04"
+      "date": "14/12/2021 05:04 pm"
     }
   ],
   "expense": [

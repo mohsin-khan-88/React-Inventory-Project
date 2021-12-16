@@ -17,7 +17,7 @@ export class AddCategory extends Component {
       ],
       categoryId: "",
       categoryName: "",
-      categoryType: "",
+      categoryTypeId: "",
     };
   }
 
@@ -36,22 +36,22 @@ export class AddCategory extends Component {
   AddCategory = (e) => {
     e.preventDefault();
 
-    const { categoryId, categoryName, category } = e.target.elements;
+    const { categoryId, categoryName, categoryTypeId } = e.target.elements;
 
     const findFormErrors = () => {
       const newErrors = {};
 
       if (!this.state.categoryName || this.state.categoryName === "") {
-        newErrors.categoryName = "Categories title cannot be blank!";
+        newErrors.categoryName = "Title cannot be blank!";
         categoryName.className = "form-control is-invalid";
       } else {
         categoryName.className = "form-control is-valid";
       }
-      if (!this.state.category || this.state.category === "") {
-        newErrors.category = "Categories category cannot be blank!";
-        category.className = "form-control is-invalid";
+      if (!this.state.categoryTypeId || this.state.categoryTypeId === "") {
+        newErrors.categoryTypeId = "Type cannot be blank!";
+        categoryTypeId.className = "form-control is-invalid";
       } else {
-        category.className = "form-control is-valid";
+        categoryTypeId.className = "form-control is-valid";
       }
 
       return newErrors;
@@ -65,28 +65,27 @@ export class AddCategory extends Component {
       const apiData = {
         id: this.state.categoryId,
         name: this.state.categoryName,
-        category: this.state.category,
-        description: this.state.categoriesDescription,
+        type: this.state.categoryTypeId,
       };
 
       const apiSuccess = () => {
-        const { categoryName, category } = e.target.elements;
+        const { categoryName, categoryTypeId } = e.target.elements;
 
         // Clear form fields data and errors
         this.setState({
           categoryName: "",
-          category: "",
+          categoryTypeId: "",
         });
 
         categoryName.className = "form-control";
-        category.className = "form-control";
+        categoryTypeId.className = "form-control";
 
         this.props.onBtnClick(true);
       };
 
       if (!this.state.categoryId || this.state.categoryId === "") {
         axios
-          .post("/categories", { apiData })
+          .post("/stock-categories", { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -97,7 +96,7 @@ export class AddCategory extends Component {
           });
       } else {
         axios
-          .put("/categories/" + this.state.categoryId, { apiData })
+          .put("/stock-categories/" + this.state.categoryId, { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -122,13 +121,13 @@ export class AddCategory extends Component {
   editCategoriesData = (id) => {
     window.scrollTo(0, 0);
     axios
-      .get("/categories/" + id)
+      .get("/stock-categories/" + id)
       .then((res) => {
         const editCategoriesData = res.data;
         this.setState({
           categoryId: editCategoriesData.id,
           categoryName: editCategoriesData.title,
-          category: editCategoriesData.category,
+          categoryTypeId: editCategoriesData.type,
         });
       })
       .catch(function (error) {
@@ -172,16 +171,16 @@ export class AddCategory extends Component {
                   <div className="col mb-2">
                     <label className="form-label">Type</label>
                     <select
-                      name="category"
-                      aria-label="Category"
+                      name="categoryTypeId"
+                      aria-label="categoryTypeId"
                       className="form-select"
-                      value={this.state.category}
+                      value={this.state.categoryTypeId}
                       onChange={this.handleChange}
                     >
                       <option value="">Select Type</option>
-                      {this.state.categoryTypes.map((type) => (
-                        <option key={type.id} value={type.id}>
-                          {type.type}
+                      {this.state.categoryTypes.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.type}
                         </option>
                       ))}
                     </select>
