@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -11,6 +11,7 @@ import Sales from "./components/Sales/Sales";
 import Reports from "./components/Reports/Reports";
 import Expense from "./components/Expense/Expense";
 import Categories from "./components/Categories/Categories";
+import Platforms from "./components/Platforms/Platforms";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/expense" element={<Expense />} />
                 <Route path="/reports" element={<Reports />} />
                 <Route path="/categories" element={<Categories />} />
+                <Route path="/platforms" element={<Platforms />} />
               </Routes>
             </div>
           </div>

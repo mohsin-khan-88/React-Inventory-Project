@@ -176,7 +176,8 @@ class Expense extends Component {
       "Price",
       "Quantity",
       "Category",
-      "description",
+      "Description",
+      "Date",
       "Action",
     ];
 
@@ -189,6 +190,7 @@ class Expense extends Component {
         <td>{item.quantity}</td>
         <td>{item.categoryName}</td>
         <td>{item.description}</td>
+        <td>{item.date}</td>
         <td>
           <button
             className="border-0 bg-transparent"

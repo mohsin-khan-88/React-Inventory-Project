@@ -1,25 +1,25 @@
 import React, { Component } from "react";
-import "./Sales.css";
+import "./Platforms.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import BtnNav from "../BtnNav/BtnNav";
 import Tables from "../Tables/Tables";
-import AddSales from "./AddSales";
+import AddPlatforms from "./AddPlatforms";
 import { Container, Row, Col } from "react-bootstrap";
 import Toasts from "../Toasts/Toasts";
 import axios from "../../utils/Api";
 
-class Sales extends Component {
+class Platforms extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      salesData: [],
+      platformsData: [],
       showResults: "d-none",
       showBtn: true,
       classesToAdd: "",
       showToasts: false,
-      editSales: false,
-      formBtnName: "Add Sale",
+      editPlatforms: false,
+      formBtnName: "Add Platform",
       isLoading: false,
       page: 1,
       loadMore: true,
@@ -29,29 +29,29 @@ class Sales extends Component {
   }
 
   componentDidMount() {
-    this.getSalesData();
+    this.getPlatformsData();
   }
 
-  getSalesData = () => {
+  getPlatformsData = () => {
     this.setState({
       loadMore: true,
     });
     axios
-      .get("/sales?_page=" + this.state.page + "&_limit=5")
+      .get("/platforms?_page=" + this.state.page + "&_limit=5")
       .then((res) => {
-        if (this.state.page >= 2) {
+        if (this.state.page >= 1) {
           this.setState({
             loadMore: false,
           });
         }
         if (this.state.isLoading === false) {
           this.setState({
-            salesData: res.data,
+            platformsData: res.data,
             isLoading: false,
           });
         } else {
           this.setState((prevState) => ({
-            salesData: [...prevState.salesData, ...res.data],
+            platformsData: [...prevState.platformsData, ...res.data],
             isLoading: false,
           }));
         }
@@ -61,7 +61,7 @@ class Sales extends Component {
       });
   };
 
-  openAddSales = () => {
+  openAddPlatforms = () => {
     this.setState({
       showResults: "d-block",
       showBtn: false,
@@ -70,20 +70,20 @@ class Sales extends Component {
     });
   };
 
-  closeAddSales = () => {
+  closeAddPlatforms = () => {
     this.setState(
       {
         showResults: "d-none",
         showBtn: true,
         classesToAdd: "bg-success show",
         showToasts: true,
-        editSales: false,
-        formBtnName: "Add Sales",
-        salesData: [],
+        editPlatforms: false,
+        formBtnName: "Add Platforms",
+        platformsData: [],
         page: 1,
       },
       function () {
-        this.getSalesData();
+        this.getPlatformsData();
       }
     );
   };
@@ -95,41 +95,41 @@ class Sales extends Component {
     });
   };
 
-  editSales = (id, e) => {
+  editPlatforms = (id, e) => {
     this.setState({
       classesToAdd: "",
       showToasts: false,
-      editSalesId: id,
+      editplatformsId: id,
       showResults: "d-block",
       showBtn: false,
-      editSales: true,
-      formBtnName: "Update Sale",
+      editPlatforms: true,
+      formBtnName: "Update Platform",
     });
 
     if (this.editRef.current !== null) {
-      this.editRef.current.editSalesData(id);
+      this.editRef.current.editPlatformsData(id);
     } else {
       console.log(this.editRef);
     }
   };
 
-  deleteSales = (id, name, e) => {
-    const itemName = name;
+  deletePlatforms = (id, title, e) => {
+    const itemName = title;
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Do you want to delete " + itemName)) {
       axios
-        .delete("/sales/" + id)
+        .delete("/platforms/" + id)
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             this.setState(
               {
-                salesData: [],
+                platformsData: [],
                 page: 1,
                 classesToAdd: "bg-success show",
                 showToasts: true,
               },
               function () {
-                this.getSalesData();
+                this.getPlatformsData();
               }
             );
           }
@@ -140,15 +140,15 @@ class Sales extends Component {
     }
   };
 
-  searchSales = (e) => {
+  searchPlatforms = (e) => {
     this.setState({
       loadMore: false,
     });
     axios
-      .get("/sales?q=" + e.target.search.value + "")
+      .get("/platforms?q=" + e.target.search.value + "")
       .then((res) => {
         this.setState({
-          salesData: res.data,
+          platformsData: res.data,
           page: 1,
         });
       })
@@ -164,41 +164,29 @@ class Sales extends Component {
         isLoading: true,
       },
       function () {
-        this.getSalesData();
+        this.getPlatformsData();
       }
     );
   };
 
   render() {
-    const thValues = [
-      "Sku",
-      "Name",
-      "Price",
-      "Quantity",
-      "Platform",
-      "Date",
-      "Action",
-    ];
+    const thValues = ["#", "Title", "Action"];
 
-    let data = this.state.salesData;
+    let data = this.state.platformsData;
     const tdDat = data.map((item) => (
       <tr key={item.id}>
-        <th scope="row">{item.stockId}</th>
-        <td>{item.stockName}</td>
-        <td>${item.price}</td>
-        <td>{item.quantity}</td>
-        <td>{item.platformName}</td>
-        <td>{item.date}</td>
+        <th scope="row">{item.id}</th>
+        <td>{item.platform}</td>
         <td>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.editSales(item.id, e)}
+            onClick={(e) => this.editPlatforms(item.id, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faEdit} />
           </button>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.deleteSales(item.id, item.stockName, e)}
+            onClick={(e) => this.deletePlatforms(item.id, item.platform, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
           </button>
@@ -211,22 +199,22 @@ class Sales extends Component {
         <Container fluid>
           <Row>
             <Col>
-              <div className="sales">
-                <h1 className="text- text-uppercase my-3">Sales</h1>
+              <div className="Platforms">
+                <h1 className="text- text-uppercase my-3">Platforms</h1>
               </div>
             </Col>
           </Row>
         </Container>
         <BtnNav
-          btnName="Add Sales"
-          search={this.searchSales}
-          onBtnClick={this.openAddSales}
+          btnName="Add Platforms"
+          search={this.searchPlatforms}
+          onBtnClick={this.openAddPlatforms}
           showBtn={this.state.showBtn}
         />
-        <AddSales
+        <AddPlatforms
           showResults={this.state.showResults}
-          onBtnClick={this.closeAddSales}
-          editSales={this.state.editSales}
+          onBtnClick={this.closeAddPlatforms}
+          editPlatforms={this.state.editPlatforms}
           btnName={this.state.formBtnName}
           ref={this.editRef}
         />
@@ -257,4 +245,4 @@ class Sales extends Component {
   }
 }
 
-export default Sales;
+export default Platforms;

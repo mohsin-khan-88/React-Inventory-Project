@@ -28,7 +28,6 @@ class Categories extends Component {
     this.editRef = React.createRef();
   }
 
-
   componentDidMount() {
     this.getCategoriesData();
   }
@@ -171,12 +170,7 @@ class Categories extends Component {
   };
 
   render() {
-    const thValues = [
-      "#",
-      "Name",
-      "Type",
-      "Action",
-    ];
+    const thValues = ["#", "Name", "Type", "Action"];
 
     let data = this.state.categoriesData;
     const tdDat = data.map((item) => (
@@ -193,7 +187,7 @@ class Categories extends Component {
           </button>
           <button
             className="border-0 bg-transparent"
-            onClick={(e) => this.deleteCategories(item.id, item.title, e)}
+            onClick={(e) => this.deleteCategories(item.id, item.catName, e)}
           >
             <FontAwesomeIcon className="m-1" icon={faTrashAlt} />
           </button>

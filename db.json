@@ -7,7 +7,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "1",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "3",
-      "categoryName": " Category 3"
+      "categoryName": "Category 3"
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "4",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "5",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 6,
@@ -52,7 +52,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 7,
@@ -61,7 +61,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "1",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 8,
@@ -70,7 +70,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 9,
@@ -79,7 +79,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "1",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 10,
@@ -88,7 +88,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 11,
@@ -97,7 +97,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "1",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 12,
@@ -106,7 +106,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 13,
@@ -115,7 +115,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "1",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 14,
@@ -124,7 +124,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 15,
@@ -133,7 +133,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "1",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 16,
@@ -142,7 +142,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 17,
@@ -151,7 +151,7 @@
       "price": "12000",
       "quantity": "500",
       "category": "1",
-      "categoryName": " Category 1"
+      "categoryName": "Category 1"
     },
     {
       "id": 18,
@@ -160,7 +160,7 @@
       "price": "22000",
       "quantity": "1000",
       "category": "2",
-      "categoryName": " Category 2"
+      "categoryName": "Category 2"
     },
     {
       "id": 19,
@@ -169,7 +169,7 @@
       "price": "23500",
       "quantity": "300",
       "category": "3",
-      "categoryName": " Category 3"
+      "categoryName": "Category 3"
     },
     {
       "id": 20,
@@ -178,68 +178,68 @@
       "price": "23500",
       "quantity": "300",
       "category": "3",
-      "categoryName": " Category 3"
+      "categoryName": "Category 3"
     }
   ],
   "stock-categories": [
     {
       "id": 1,
       "catName": "Category 1",
-      "type": "stocks",
+      "type": "Stock",
       "typeId": 1
     },
     {
       "id": 2,
       "catName": "Category 2",
-      "type": "stocks",
+      "type": "Stock",
       "typeId": 1
     },
     {
       "id": 3,
       "catName": "Category 3",
-      "type": "stocks",
+      "type": "Stock",
       "typeId": 1
     },
     {
       "id": 4,
       "catName": "Category 4",
-      "type": "stocks",
+      "type": "Stock",
       "typeId": 1
     },
     {
       "id": 5,
       "catName": "Category 5",
-      "type": "stocks",
+      "type": "Stock",
       "typeId": 1
     },
     {
       "id": 6,
       "catName": "Category 1",
-      "type": "expense",
+      "type": "Expense",
       "typeId": 1
     },
     {
       "id": 7,
       "catName": "Category 2",
-      "type": "expense",
+      "type": "Expense",
       "typeId": 2
     },
     {
       "id": 8,
       "catName": "Category 3",
-      "type": "expense",
+      "type": "Expense",
       "typeId": 2
     },
     {
       "id": 9,
       "catName": "Category 4",
-      "type": "expense",
+      "type": "Expense",
       "typeId": 2
     },
     {
       "id": 10,
       "catName": "Category 5",
-      "type": "expense",
+      "type": "Expense",
       "typeId": 2
     }
   ],
@@ -344,7 +344,7 @@
       "price": "45000",
       "quantity": "1",
       "category": "1",
-      "categoryName": " Category 1",
+      "categoryName": "Category 1",
       "description": "Test Description",
       "date": "15/12/2021 05:16 pm"
     },
@@ -354,7 +354,7 @@
       "price": "15000",
       "quantity": "1",
       "category": "2",
-      "categoryName": " Category 2",
+      "categoryName": "Category 2",
       "description": "Test Description",
       "date": "15/12/2021 05:16 pm"
     },
@@ -364,7 +364,7 @@
       "price": "45000",
       "quantity": "1",
       "category": "3",
-      "categoryName": " Category 3",
+      "categoryName": "Category 3",
       "description": "Test Description",
       "date": "15/12/2021 05:16 pm"
     },
@@ -374,7 +374,7 @@
       "price": "15000",
       "quantity": "1",
       "category": "4",
-      "categoryName": " Category 4",
+      "categoryName": "Category 4",
       "description": "Test Description 4",
       "date": "15/12/2021 05:16 pm"
     },
@@ -384,7 +384,7 @@
       "price": "45000",
       "quantity": "1",
       "category": "5",
-      "categoryName": " Category 5",
+      "categoryName": "Category 5",
       "description": "Test Description 5",
       "date": "15/12/2021 05:16 pm"
     },
@@ -394,7 +394,7 @@
       "price": "15000",
       "quantity": "1",
       "category": "1",
-      "categoryName": " Category 1",
+      "categoryName": "Category 1",
       "description": "Test Description 6",
       "date": "15/12/2021 05:16 pm"
     },
@@ -404,7 +404,7 @@
       "price": "5000",
       "quantity": "1",
       "category": "3",
-      "categoryName": " Category 3",
+      "categoryName": "Category 3",
       "description": "Test Description 7",
       "date": "15/12/2021 05:16 pm"
     }

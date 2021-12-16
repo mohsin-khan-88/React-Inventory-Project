@@ -1,45 +1,28 @@
 import React, { Component } from "react";
 import axios from "../../utils/Api";
 
-export class AddCategory extends Component {
+export class AddPlatforms extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryTypes: [
-        {
-          id: 1,
-          type: "Stock",
-        },
-        {
-          id: 2,
-          type: "Expense",
-        },
-      ],
-      categoryId: "",
-      categoryName: "",
-      categoryTypeId: "",
+      platformId: "",
+      platformName: "",
     };
   }
 
-  AddCategory = (e) => {
+  AddPlatform = (e) => {
     e.preventDefault();
 
-    const { categoryId, categoryName, categoryTypeId } = e.target.elements;
+    const { platformId, platformName } = e.target.elements;
 
     const findFormErrors = () => {
       const newErrors = {};
 
-      if (!this.state.categoryName || this.state.categoryName === "") {
-        newErrors.categoryName = "Title cannot be blank!";
-        categoryName.className = "form-control is-invalid";
+      if (!this.state.platformName || this.state.platformName === "") {
+        newErrors.platformName = "Title cannot be blank!";
+        platformName.className = "form-control is-invalid";
       } else {
-        categoryName.className = "form-control is-valid";
-      }
-      if (!this.state.categoryTypeId || this.state.categoryTypeId === "") {
-        newErrors.categoryTypeId = "Type cannot be blank!";
-        categoryTypeId.className = "form-control is-invalid";
-      } else {
-        categoryTypeId.className = "form-control is-valid";
+        platformName.className = "form-control is-valid";
       }
 
       return newErrors;
@@ -51,30 +34,27 @@ export class AddCategory extends Component {
       console.log(newErrors);
     } else {
       const apiData = {
-        id: this.state.categoryId,
-        catName: this.state.categoryName,
-        typeId: this.state.categoryTypeId,
+        id: this.state.platformId,
+        platform: this.state.platformName,
       };
 
       const apiSuccess = () => {
-        const { categoryId, categoryName, categoryTypeId } = e.target.elements;
+        const { platformId, platformName } = e.target.elements;
 
         // Clear form fields data and errors
         this.setState({
-          categoryId: "",
-          categoryName: "",
-          categoryTypeId: "",
+          platformId: "",
+          platformName: "",
         });
 
-        categoryName.className = "form-control";
-        categoryTypeId.className = "form-control";
+        platformName.className = "form-control";
 
         this.props.onBtnClick(true);
       };
 
-      if (!this.state.categoryId || this.state.categoryId === "") {
+      if (!this.state.platformId || this.state.platformId === "") {
         axios
-          .post("/stock-categories", { apiData })
+          .post("/platforms", { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -85,7 +65,7 @@ export class AddCategory extends Component {
           });
       } else {
         axios
-          .put("/stock-categories/" + this.state.categoryId, { apiData })
+          .put("/platforms/" + this.state.platformId, { apiData })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               apiSuccess();
@@ -107,16 +87,15 @@ export class AddCategory extends Component {
     }
   };
 
-  editCategoriesData = (id) => {
+  editPlatformsData = (id) => {
     window.scrollTo(0, 0);
     axios
-      .get("/stock-categories/" + id)
+      .get("/platforms/" + id)
       .then((res) => {
-        const editCategoriesData = res.data;
+        const editPlatformsData = res.data;
         this.setState({
-          categoryId: editCategoriesData.id,
-          categoryName: editCategoriesData.catName,
-          categoryTypeId: editCategoriesData.typeId,
+          platformId: editPlatformsData.id,
+          platformName: editPlatformsData.platform,
         });
       })
       .catch(function (error) {
@@ -131,7 +110,7 @@ export class AddCategory extends Component {
           <div className="row">
             <div className="col">
               <form
-                onSubmit={this.AddCategory}
+                onSubmit={this.AddPlatform}
                 className="my-3 py-3 needs-validation"
                 noValidate
               >
@@ -140,40 +119,22 @@ export class AddCategory extends Component {
                     <label className="form-label">Title</label>
                     <input
                       type="hidden"
-                      name="categoryId"
+                      name="platformId"
                       aria-describedby="idHelp"
                       className="form-control"
-                      value={this.state.categoryId}
+                      value={this.state.platformId}
                       onChange={this.handleChange}
                     />
                     <input
                       type="text"
-                      name="categoryName"
+                      name="platformName"
                       aria-describedby="nameHelp"
                       placeholder="Enter Title"
                       className="form-control"
-                      value={this.state.categoryName}
+                      value={this.state.platformName}
                       onChange={this.handleChange}
                     />
                     <div className="invalid-feedback">Cannot be blank!</div>
-                  </div>
-                  <div className="col mb-2">
-                    <label className="form-label">Type</label>
-                    <select
-                      name="categoryTypeId"
-                      aria-label="categoryTypeId"
-                      className="form-select"
-                      value={this.state.categoryTypeId}
-                      onChange={this.handleChange}
-                    >
-                      <option value="">Select Type</option>
-                      {this.state.categoryTypes.map((item) => (
-                        <option key={item.id} value={item.id}>
-                          {item.type}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="invalid-feedback">Please select Type!</div>
                   </div>
                 </div>
                 <div className="row">
@@ -192,4 +153,4 @@ export class AddCategory extends Component {
   }
 }
 
-export default AddCategory;
+export default AddPlatforms;
