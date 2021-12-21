@@ -6,6 +6,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "1",
       "categoryName": "Category 1"
     },
@@ -15,6 +16,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -24,6 +26,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "3",
       "categoryName": "Category 3"
     },
@@ -42,6 +45,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "5",
       "categoryName": "Category 1"
     },
@@ -51,6 +55,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -60,6 +65,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "1",
       "categoryName": "Category 1"
     },
@@ -78,6 +84,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "1",
       "categoryName": "Category 1"
     },
@@ -87,6 +94,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -96,6 +104,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "1",
       "categoryName": "Category 1"
     },
@@ -105,6 +114,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -114,6 +124,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "1",
       "categoryName": "Category 1"
     },
@@ -123,6 +134,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -132,6 +144,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "1",
       "categoryName": "Category 1"
     },
@@ -141,6 +154,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -150,6 +164,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
+      "remaining": "475",
       "category": "1",
       "categoryName": "Category 1"
     },
@@ -159,6 +174,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -168,6 +184,7 @@
       "name": "Burberry",
       "price": "23500",
       "quantity": "300",
+      "remaining": "475",
       "category": "3",
       "categoryName": "Category 3"
     },
@@ -177,6 +194,7 @@
       "name": "Burberry",
       "price": "23500",
       "quantity": "300",
+      "remaining": "475",
       "category": "3",
       "categoryName": "Category 3"
     }
@@ -355,7 +373,7 @@
       "quantity": "1",
       "category": "2",
       "categoryName": "Category 2",
-      "description": "Test Description",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "date": "15/12/2021 05:16 pm"
     },
     {

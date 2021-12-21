@@ -176,6 +176,7 @@ class Stock extends Component {
       "Name",
       "Price",
       "Quantity",
+      "Remaining",
       "Category",
       "Action",
     ];
@@ -193,6 +194,7 @@ class Stock extends Component {
         <td>{item.name}</td>
         <td>${item.price}</td>
         <td>{item.quantity}</td>
+        <td>{item.remaining}</td>
         <td>{item.categoryName}</td>
         <td>
           <button
