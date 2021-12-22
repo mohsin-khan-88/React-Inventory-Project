@@ -16,7 +16,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
-      "remaining": "475",
+      "remaining": "175",
       "category": "2",
       "categoryName": "Category 2"
     },
@@ -26,7 +26,7 @@
       "name": "Michael Kors",
       "price": "12000",
       "quantity": "500",
-      "remaining": "475",
+      "remaining": "355",
       "category": "3",
       "categoryName": "Category 3"
     },
@@ -36,6 +36,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "470",
       "category": "4",
       "categoryName": "Category 2"
     },
@@ -75,6 +76,7 @@
       "name": "Mac",
       "price": "22000",
       "quantity": "1000",
+      "remaining": "475",
       "category": "2",
       "categoryName": "Category 2"
     },

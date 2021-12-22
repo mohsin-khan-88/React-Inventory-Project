@@ -169,6 +169,10 @@ class Expense extends Component {
     );
   };
 
+  trimText = (string, length) => {
+    return string.length > length ? string.substring(0, length) +  '...' : string;
+  };
+
   render() {
     const thValues = [
       "#",
@@ -189,7 +193,7 @@ class Expense extends Component {
         <td>${item.price}</td>
         <td>{item.quantity}</td>
         <td>{item.categoryName}</td>
-        <td>{item.description}</td>
+        <td>{this.trimText(item.description, 30)}</td>
         <td>{item.date}</td>
         <td>
           <button

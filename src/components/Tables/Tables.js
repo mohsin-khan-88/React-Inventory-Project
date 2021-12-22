@@ -15,7 +15,8 @@ export class Tables extends Component {
                   <thead>
                     <tr>{thVal}</tr>
                   </thead>
-                  <tbody>{this.props.tdData}</tbody>
+                  <tbody>{this.props.tdData}
+                  {this.props.tdTotal ? this.props.tdTotal : null}</tbody>
                 </table>
               </div>
             </div>

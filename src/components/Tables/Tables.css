@@ -1,15 +1,19 @@
-.tables th 
-{
-    text-align: center; 
-    vertical-align: middle;
+.tables th {
+  text-align: center;
+  vertical-align: middle;
 }
 
-.tables td 
-{
-    text-align: center; 
-    vertical-align: middle;
+.tables td {
+  text-align: center;
+  vertical-align: middle;
 }
 
 .tables a {
-    color: #000!important;
+  color: #000 !important;
+}
+
+.tables .border-total {
+  border: 2px solid #000;
+  border-left: none;
+  border-right: none;
 }
