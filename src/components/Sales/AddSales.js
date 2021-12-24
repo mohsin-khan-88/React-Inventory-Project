@@ -192,7 +192,7 @@ class AddSales extends Component {
   render() {
     return (
       <>
-        <div className={"container-fluid " + this.props.showResults}>
+        <div className={"container-fluid AddSales " + this.props.showResults}>
           <div className="row">
             <div className="col">
               <form

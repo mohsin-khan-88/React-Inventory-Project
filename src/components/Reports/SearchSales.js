@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "../../utils/Api";
 import Ac from "../Sales/Ac";
-import DatePicker from "./DatePicker";
+import DateCalender from "./DateCalender";
 
 export class SearchSales extends Component {
   constructor(props) {
@@ -87,6 +87,18 @@ export class SearchSales extends Component {
     }
   };
 
+  hcDatePickerFrom = (newValue) => {
+    this.setState({
+      fromDate: newValue,
+    });
+  };
+
+  hcDatePickerTo = (newValue) => {
+    this.setState({
+      toDate: newValue,
+    });
+  };
+
   render() {
     return (
       <>
@@ -143,28 +155,17 @@ export class SearchSales extends Component {
                 <div className="row">
                   <div className="col mb-2">
                     <label className="form-label">From</label>
-                    <input
-                      type="text"
-                      name="fromDate"
-                      aria-describedby="fromDate"
-                      placeholder="Enter Date"
-                      className="form-control"
-                      value={this.state.fromDate}
-                      onChange={this.handleChange}
+                    <DateCalender
+                      dValue={this.state.fromDate}
+                      handleToDate={this.hcDatePickerFrom}
                     />
-                    <DatePicker />
                     <div className="invalid-feedback">Cannot be blank!</div>
                   </div>
                   <div className="col mb-2">
                     <label className="form-label">To</label>
-                    <input
-                      type="text"
-                      name="toDate"
-                      aria-describedby="toDate"
-                      placeholder="Enter Date"
-                      className="form-control"
-                      value={this.state.toDate}
-                      onChange={this.handleChange}
+                    <DateCalender
+                      dValue={this.state.toDate}
+                      handleToDate={this.hcDatePickerTo}
                     />
                     <div className="invalid-feedback">Cannot be blank!</div>
                   </div>

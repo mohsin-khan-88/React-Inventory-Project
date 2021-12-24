@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import "./Reports.css";
+import "./SalesReport.css";
 import SalesReport from "./SalesReport";
 
 export class Reports extends Component {

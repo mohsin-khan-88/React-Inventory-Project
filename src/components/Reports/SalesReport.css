@@ -1,0 +1,7 @@
+.salesRadio {
+  cursor: pointer;
+}
+
+.MuiFormControl-root {
+  display: flex !important;
+}
