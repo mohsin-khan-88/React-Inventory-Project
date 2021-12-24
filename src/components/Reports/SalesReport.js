@@ -7,13 +7,8 @@ export class SalesReport extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      apiData: [],
       salesData: [],
-      showResults: "d-none",
-      showBtn: true,
-      classesToAdd: "",
-      showToasts: false,
-      editSales: false,
-      formBtnName: "Add Sale",
       isLoading: false,
       page: 1,
       loadMore: true,
@@ -23,16 +18,42 @@ export class SalesReport extends Component {
   }
 
   componentDidMount() {
-    this.getSalesData();
+    // this.getSalesData();
   }
 
-  getSalesData = () => {
+  handleSearchRequest = (apiData) => {
+    if (apiData) {
+      const page = 1;
+      this.setState(
+        {
+          page: 1,
+          apiData: apiData,
+        },
+        this.getSalesData(apiData, page)
+      );
+    } else {
+      this.getSalesData();
+    }
+  };
+
+  getSalesData = (apiData, page) => {
+    if (apiData) {
+      apiData = apiData;
+    } else {
+      apiData = this.state.apiData;
+    }
+    if (page) {
+      page = page;
+    } else {
+      page = this.state.page;
+    }
     this.setState({
       loadMore: true,
     });
     axios
-      .get("/sales?_page=" + this.state.page + "&_limit=5")
+      .get("/sales?_page=" + page + "&_limit=5", apiData)
       .then((res) => {
+        console.log(res);
         if (this.state.page >= 2) {
           this.setState({
             loadMore: false,
@@ -87,18 +108,17 @@ export class SalesReport extends Component {
         <td>&nbsp;</td>
         <th>Total</th>
         <th>$250000</th>
-        <td colspan="3">&nbsp;</td>
+        <td colSpan="3">&nbsp;</td>
       </tr>
     );
 
     return (
       <>
-        <SearchSales />
-
+        <SearchSales searchParam={this.handleSearchRequest} />
         {this.state.salesData != "" ? (
           <Tables thValues={thValues} tdData={tdDat} tdTotal={tdTotal} />
         ) : null}
-        {this.state.loadMore === true ? (
+        {this.state.salesData != "" && this.state.loadMore === true ? (
           <div className="container-fluid btnNav">
             <div className="row">
               <div className="col">
