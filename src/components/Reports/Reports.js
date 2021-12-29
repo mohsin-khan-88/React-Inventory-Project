@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import "./SalesReport.css";
+import "./Reports.css";
 import SalesReport from "./SalesReport";
+import ExpenseReports from "./ExpenseReports";
 
 export class Reports extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ export class Reports extends Component {
           </Row>
         </Container>
         {this.state.reportType === "sales" ? <SalesReport /> : null}
-        {this.state.reportType === "expense" ? <h1>Expense</h1> : null}
+        {this.state.reportType === "expense" ? <ExpenseReports />: null}
       </>
     );
   }

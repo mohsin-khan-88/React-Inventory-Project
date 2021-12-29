@@ -3,7 +3,6 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import "./SalesReport.css";
 
 export class DateCalender extends Component {
   constructor(props) {
