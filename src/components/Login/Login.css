@@ -1,0 +1,113 @@
+.login {
+  background-color: #eeeeee;
+}
+
+.login .text-muted {
+  opacity: 1;
+  color: #757575 !important;
+}
+
+.login a {
+  text-decoration: none;
+}
+
+.login .gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #000000;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    #000000,
+    #1a1a1b,
+    #353437,
+    #4f4e52
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #000000, #1a1a1b, #353437, #4f4e52);
+}
+
+.login .loginLogo {
+  width: 185px;
+}
+
+.login .btn-block {
+  display: block;
+  width: 100%;
+}
+
+.login .logoCon {
+  margin: 0.5rem auto;
+}
+
+.login .logo {
+  margin: 0.5rem auto;
+  font-size: 22px;
+  font-family: sans-serif;
+  border: 1px solid #000;
+  border-left: none;
+  border-right: none;
+  padding: 0.25rem;
+  letter-spacing: 8px;
+  max-width: 200px;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.login .logoIcon {
+  margin: auto;
+  display: block;
+  font-size: 50px;
+  -webkit-animation: run 7s linear infinite;
+  -moz-animation: run 7s linear infinite;
+  animation: run 7s linear infinite;
+  position: relative;
+}
+
+@-moz-keyframes run {
+  0% {
+    left: -17%;
+  }
+  50% {
+    left: 17%;
+  }
+  100% {
+    left: -17%;
+  }
+}
+
+@-webkit-keyframes run {
+  0% {
+    left: -17%;
+  }
+  50% {
+    left: 17%;
+  }
+  100% {
+    left: -17%;
+  }
+}
+
+@keyframes run {
+  0% {
+    left: -17%;
+  }
+  50% {
+    left: 17%;
+  }
+  100% {
+    left: -17%;
+  }
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+}
