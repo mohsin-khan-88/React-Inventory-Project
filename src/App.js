@@ -13,6 +13,8 @@ import Expense from "./components/Expense/Expense";
 import Categories from "./components/Categories/Categories";
 import Platforms from "./components/Platforms/Platforms";
 import Login from "./components/Login/Login";
+import Toasts from "./components/Toasts/Toasts";
+import axios from "./utils/Api";
 
 export class App extends Component {
   constructor(props) {
@@ -20,8 +22,74 @@ export class App extends Component {
 
     this.state = {
       is_logged_in: false,
+      showToasts: false,
+      messageToShow: "",
+      classesToAdd: "",
     };
   }
+
+  checkLogin = (e) => {
+    e.preventDefault();
+    const { userEmail, userPassword } = e.target.elements;
+    // console.log("Check login email", userEmail.value);
+    // console.log("Check login Password", userPassword.value);
+    // axios
+    //   .get("/login", {
+    //     auth: {
+    //       email: userEmail.value,
+    //       username: userPassword.value, // Bad password
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+    if (
+      userEmail.value === "bebo@bebo.com" &&
+      userPassword.value === "bebo321"
+    ) {
+      this.setState(
+        {
+          classesToAdd: "",
+          showToasts: false,
+        },
+        () => {
+          this.setState(
+            {
+              classesToAdd: "bg-success show",
+              messageToShow: "You have successfully logged in!",
+              showToasts: true,
+              is_logged_in: true,
+            },
+            () => {
+              setTimeout(this.handleToasts, 2000);
+            }
+          );
+        }
+      );
+    } else {
+      this.setState(
+        {
+          classesToAdd: "bg-danger show",
+          messageToShow: "Please try again with valid user information!",
+          showToasts: true,
+        },
+        () => {
+          setTimeout(this.handleToasts, 2000);
+        }
+      );
+    }
+  };
+
+  handleToasts = () => {
+    this.setState({
+      classesToAdd: "",
+      showToasts: false,
+    });
+  };
 
   render() {
     return (
@@ -47,13 +115,20 @@ export class App extends Component {
               ) : (
                 <>
                   <div className="col m-0 p-0">
-                    <Login />
+                    <Login checkLogin={this.checkLogin} />
                   </div>
                 </>
               )}
             </div>
           </div>
         </Router>
+        {this.state.showToasts ? (
+          <Toasts
+            classesToAdd={this.state.classesToAdd}
+            handleToasts={this.handleToasts}
+            messageToShow={this.state.messageToShow}
+          />
+        ) : null}
       </>
     );
   }

@@ -1,23 +1,12 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTachometerAlt,
-  faCubes,
-  faChartBar,
-  faChartPie,
-  faHandHoldingUsd,
-  faList,
-  faLink,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCubes } from "@fortawesome/free-solid-svg-icons";
 
 export class Login extends Component {
   render() {
     return (
-      <section
-        className="h-100 gradient-form login"
-        //   style="background-color: #eee;"
-      >
+      <section className="h-100 gradient-form login">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-xl-10">
@@ -25,15 +14,6 @@ export class Login extends Component {
                 <div className="row g-0">
                   <div className="col-lg-6">
                     <div className="card-body p-md-5 mx-md-4">
-                      {/* <div className="text-center">
-                        <img
-                        className="loginLogo"
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                          alt="logo"
-                        />
-                        <h4 className="mt-1 mb-5 pb-1">Inventory</h4>
-                      </div> */}
-
                       <div className="logoCon mt-4 mb-4">
                         <FontAwesomeIcon className="logoIcon" icon={faCubes} />
                         <h3 className="text-uppercase text-center logo">
@@ -41,38 +21,31 @@ export class Login extends Component {
                         </h3>
                       </div>
 
-                      <form>
+                      <form onSubmit={this.props.checkLogin}>
                         <p>Please login to your account</p>
 
                         <div className="form-outline mb-4">
                           <input
                             type="email"
-                            id="form2Example11"
+                            name="userEmail"
                             className="form-control"
                             placeholder="Email address"
+                            required
                           />
-                          {/* <label className="form-label" for="form2Example11">
-                            Username
-                          </label> */}
                         </div>
 
                         <div className="form-outline mb-4">
                           <input
                             type="password"
-                            id="form2Example22"
+                            name="userPassword"
                             className="form-control"
                             placeholder="Passsword"
+                            required
                           />
-                          {/* <label className="form-label" for="form2Example22">
-                            Password
-                          </label> */}
                         </div>
 
                         <div className="text-center pt-1 mb-5 pb-1">
-                          <button
-                            className="btn btn-outline-dark mb-3 btn-block"
-                            type="button"
-                          >
+                          <button className="btn btn-outline-dark mb-3 btn-block">
                             Log in
                           </button>
                           <a className="text-muted" href="#!">
