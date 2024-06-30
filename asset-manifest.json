@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-Inventory-Project/static/css/main.af8e018b.css",
+    "main.js": "/React-Inventory-Project/static/js/main.ec577574.js",
+    "static/js/453.8a937116.chunk.js": "/React-Inventory-Project/static/js/453.8a937116.chunk.js",
+    "index.html": "/React-Inventory-Project/index.html",
+    "main.af8e018b.css.map": "/React-Inventory-Project/static/css/main.af8e018b.css.map",
+    "main.ec577574.js.map": "/React-Inventory-Project/static/js/main.ec577574.js.map",
+    "453.8a937116.chunk.js.map": "/React-Inventory-Project/static/js/453.8a937116.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.af8e018b.css",
+    "static/js/main.ec577574.js"
+  ]
+}
